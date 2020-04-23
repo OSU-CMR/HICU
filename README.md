@@ -1,4 +1,4 @@
-# HICU (_Hi_gh-dimensional _C_onvol_u_tional Framework for Calibraless MRI)
+# HICU (High-dimensional ConvolUtional Framework for Calibraless MRI)
 A computational procedure for accelerated, calibrationless magnetic resonance image reconstruction that is fast, memory efficient, and scales to highdimensional imaging.
 
 * Shen Zhao, The Ohio State University (zhao.1758@osu.edu)
