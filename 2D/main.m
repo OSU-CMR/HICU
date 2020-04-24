@@ -39,8 +39,8 @@ Iter_2 = 1; % [tunable] number of iterations for gradient descent + exact line s
 
 disp('Process the full k-space......')
 [Kdata_hat, Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata_hat, Null_c, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2);
-disp(['HICU Reconstructed k-space SNR (dB) is ', num2str(SNR(Kdata_hat,Kdata)),])
-disp(['HICU Reconstruction time (s) is: ' num2str(toc)]);
+disp(['HICU reconstructed k-space SNR (dB) is ', num2str(SNR(Kdata_hat,Kdata)),])
+disp(['HICU reconstruction time (s) is: ' num2str(toc)]);
 
 %% Plot
 FS = SSoS(K2I(Kdata));      % coil-comibined fully sampled image
