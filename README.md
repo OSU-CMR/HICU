@@ -18,7 +18,7 @@ For 2D+T parallel MRI, HICU outperforms traditional SENSE-based compressed sensi
 ## 2D+T
 1. One 2D+T cardiac cine parallel MRI k-space and two sampling masks are in **2D_T/2D+T_Data**.
 2. The HICU reconstruction subroutine for 2D+T is in **2D+T/HICUsubroutine_2D_T.m**.
-3. To implement the reconstruction for 2D, run file **2D+T/main.m**
+3. To implement the reconstruction for 2D+T, run file **2D+T/main.m**
 
 
 ## References
