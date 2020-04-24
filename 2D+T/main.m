@@ -8,7 +8,7 @@ load('Kdata.mat');% k-space
 load('R6.mat');   % sampling pattern: can also load R8
 
 Center = 1/4;                                                 % [tunable] occupies Center kx by Center ky: smaller value, faster reconstruction
-[Nx,Ny,Nt,Nc] = size(Kdata);                                  % kx ky coil time dimensions
+[Nx,Ny,Nt,Nc] = size(Kdata);                                  % kx ky time coil dimensions
 X_keep = round(Nx*(1/2-Center/2)): round(Nx*(1/2+Center/2)-1);% x coordiantes of center region
 Y_keep = round(Ny*(1/2-Center/2)): round(Ny*(1/2+Center/2)-1);% y coordinates of center region
 
