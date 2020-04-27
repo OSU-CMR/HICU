@@ -24,7 +24,6 @@ function [Kdata,Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata, Null_learned, K
 % Kdata:        estimation of k-space data                                       (tensor: #kx x #ky x #coil)
 % Null:         output null space                                                (tensor: prod(Kernek_size) x (prod(Kernek_size) -r))
 
-
 Data_size = size(Kdata_ob);         % kx ky coil dimensions of k-space
 Diff_size = Data_size - Kernel_size;% difference between kx ky coil dimensions of k-space and kernel
 for i = 1:Iter_1
@@ -74,24 +73,21 @@ for i = 1:Iter_1
             loss1 = loss1 + norm(C1,'fro')^2;
         end
         
-        if mod((i-1)*Iter_2+j,ELS_Frequency) == 1 % whether update step size via ELS
-            % ELS: Exact Line Search
+        % ELS: Exact Line Search
+        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0 % whether update step size via ELS            
             loss2 = 0;
-            loss3 = 0;
-            
+            loss3 = 0;            
             for k = 1:Proj_dim
                 C2 = convn(Kdata+GD,F(:,:,:,k),'valid');
                 C3 = convn(Kdata-GD,F(:,:,:,k),'valid');
                 loss2 = loss2 + norm(C2,'fro')^2;
                 loss3 = loss3 + norm(C3,'fro')^2;
-            end
-            
+            end            
             Loss123 = [loss1; loss2; loss3];
             Coeff = [0 0 1;1 1 1;1 -1 1]\Loss123;% coefficients for ax^2+bx+c
-            stepELS = - Coeff(2)/Coeff(1)/2;     % optimal step size, -b/2a
-        end
-        
-        Kdata = Kdata + stepELS*GD;
+            StepELS = - Coeff(2)/Coeff(1)/2;     % optimal step size, -b/2a            
+        end        
+        Kdata = Kdata + StepELS*GD;
     end
     
     %% Denoising
