@@ -1,4 +1,4 @@
-function [Kdata,Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata, Null_learned, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2)
+function [Kdata,Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata, Null_learned, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2 ,ELS_Frequency)
 % This function provides capabilities to reconstruct undersampled multi-channel 2D k-space using HICU
 % The problem formulations implemented by this softwere originally reported in:
 % [1] Zhao, Shen, et al. "Convolutional Framework for Accelerated Magnetic Resonance Imaging." arXiv preprint arXiv:2002.03225 (2020).
@@ -9,19 +9,20 @@ function [Kdata,Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata, Null_learned, K
 % Author: Shen Zhao, 04/22/2020, Email: zhao.1758@osu.edu
 %
 % Input -------------------------------------------------------------------
-% Kdata_ob:     observed k-space data with zero filling                         (tensor: #kx x #ky x #coil)
-% Mask:         sampling mask for k-space data, True: sampled, False: unsampled (tensor: #kx x #ky x #coil)
-% Kdata:        initial estimiation of k-space data                             (tensor: #kx x #ky x #coil)
-% Null_learned: learned/ extracted null space                                   (matrix: prod(Kernek_size) x (prod(Kernek_size) -r))
-% Kernel_size:  kernel size                                                     (vector: 1 x 3)
-% Rank:         rank                                                            (scaler)
-% Proj_dim:     projected nullspace dimension                                   (scaler)
-% Denoiser:     denoising subroutine                                            (function handle)
-% Iter_1:       number of iterations                                            (scaler)
-% Iter_2:       number of iterations for gradient descent + exact line search   (scaler)
+% Kdata_ob:      observed k-space data with zero filling                         (tensor: #kx x #ky x #coil)
+% Mask:          sampling mask for k-space data, True: sampled, False: unsampled (tensor: #kx x #ky x #coil)
+% Kdata:         initial estimiation of k-space data                             (tensor: #kx x #ky x #coil)
+% Null_learned:  learned/ extracted null space                                   (matrix: prod(Kernek_size) x (prod(Kernek_size) -r))
+% Kernel_size:   kernel size                                                     (vector: 1 x 3)
+% Rank:          rank                                                            (scaler)
+% Proj_dim:      projected nullspace dimension                                   (scaler)
+% Denoiser:      denoising subroutine                                            (function handle)
+% Iter_1:        number of iterations                                            (scaler)
+% Iter_2:        number of iterations for gradient descent + exact line search   (scaler)
+% ELS_Frequency: frequency of updating step size using exact line search         (scaler)
 % Output ------------------------------------------------------------------
-% Kdata:        estimation of k-space data                                      (tensor: #kx x #ky x #coil)
-% Null:         output null space                                               (tensor: prod(Kernek_size) x (prod(Kernek_size) -r))
+% Kdata:        estimation of k-space data                                       (tensor: #kx x #ky x #coil)
+% Null:         output null space                                                (tensor: prod(Kernek_size) x (prod(Kernek_size) -r))
 
 
 Data_size = size(Kdata_ob);         % kx ky coil dimensions of k-space
@@ -39,7 +40,7 @@ for i = 1:Iter_1
                     Kdata_part = Kdata(coord_1+(0:Diff_size(1)), coord_2+(0:Diff_size(2)), coord_3+(0:Diff_size(3)));% part of the k-space
                     Kdata_part(end:-1:1) = Kdata_part;                                                               % flip in all dimension
                     Gram(:,l) = reshape(convn(conj(Kdata), Kdata_part,'valid'), [],1);
-                end                
+                end
             case 2 % build Grammian from explicit matrix: memory inefficient but relative fast in Matalb
                 A = zeros(prod(Data_size-Kernel_size+1 ), prod(Kernel_size), 'like', Kdata_ob );
                 for l = 1:prod(Kernel_size)
@@ -73,20 +74,22 @@ for i = 1:Iter_1
             loss1 = loss1 + norm(C1,'fro')^2;
         end
         
-        % ELS: Exact Line Search
-        loss2 = 0;
-        loss3 = 0;
-        
-        for k = 1:Proj_dim
-            C2 = convn(Kdata+GD,F(:,:,:,k),'valid');
-            C3 = convn(Kdata-GD,F(:,:,:,k),'valid');
-            loss2 = loss2 + norm(C2,'fro')^2;
-            loss3 = loss3 + norm(C3,'fro')^2;
+        if mod((i-1)*Iter_2+j,ELS_Frequency) == 1 % whether update step size via ELS
+            % ELS: Exact Line Search
+            loss2 = 0;
+            loss3 = 0;
+            
+            for k = 1:Proj_dim
+                C2 = convn(Kdata+GD,F(:,:,:,k),'valid');
+                C3 = convn(Kdata-GD,F(:,:,:,k),'valid');
+                loss2 = loss2 + norm(C2,'fro')^2;
+                loss3 = loss3 + norm(C3,'fro')^2;
+            end
+            
+            Loss123 = [loss1; loss2; loss3];
+            Coeff = [0 0 1;1 1 1;1 -1 1]\Loss123;% coefficients for ax^2+bx+c
+            stepELS = - Coeff(2)/Coeff(1)/2;     % optimal step size, -b/2a
         end
-        
-        Loss123 = [loss1; loss2; loss3];
-        Coeff = [0 0 1;1 1 1;1 -1 1]\Loss123;% coefficients for ax^2+bx+c
-        stepELS = - Coeff(2)/Coeff(1)/2;     % optimal step size, -b/2a
         
         Kdata = Kdata + stepELS*GD;
     end
