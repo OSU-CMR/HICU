@@ -1,6 +1,6 @@
 clear all
 close all
-% clc
+clc
 
 %% Load Data
 addpath('2D_Data');
