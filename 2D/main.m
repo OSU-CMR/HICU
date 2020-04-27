@@ -24,7 +24,7 @@ Proj_dim = 2*Nc;                        % [tunable] projected nullspace dimensio
 Denoiser = @(Y)NWTDenoiser(Y,1e-5,1e-4);% [tunable] denoising subroutine (optional), no denoiser G = []
 Iter_1 = 100;                           % [tunable] number of iterations: S1R3:100, S1R5:400, S2R3:160, S2R5:1200
 Iter_2 = 3;                             % [tunable] number of iterations for gradient descent + exact line search
-ELS_Frequency = 30;                     % [tunable] Every ELS_Update_Frequency steps of gradient descent, the optimal size is updated via ELS
+ELS_Frequency = 25;                     % [tunable] Every ELS_Update_Frequency steps of gradient descent, the optimal size is updated via ELS
 
 % Warm start using center of k-space
 disp('Process the center k-space......');tic
