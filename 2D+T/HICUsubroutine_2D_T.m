@@ -1,4 +1,4 @@
-function [Kdata,Null] = HICUsubroutine_2D_T(Kdata_ob, Mask, Kdata, Null_learned, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2)
+function [Kdata,Null] = HICUsubroutine_2D_T(Kdata_ob, Mask, Kdata, Null_learned, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, ELS_Frequency)
 % This function provides capabilities to reconstruct undersampled multi-channel 2D+T k-space using HICU
 % The problem formulations implemented by this softwere originally reported in:
 % [1] Zhao, Shen, et al. "Convolutional Framework for Accelerated Magnetic Resonance Imaging." arXiv preprint arXiv:2002.03225 (2020).
@@ -9,19 +9,20 @@ function [Kdata,Null] = HICUsubroutine_2D_T(Kdata_ob, Mask, Kdata, Null_learned,
 % Author: Shen Zhao, 04/22/2020, Email: zhao.1758@osu.edu
 %
 % Input -------------------------------------------------------------------
-% Kdata_ob:     observed k-space data with zero filling                         (tensor: #kx x #ky x #frame x #coil)
-% Mask:         sampling mask for k-space data, True: sampled, False: unsampled (tensor: #kx x #ky x #frame x #coil)
-% Kdata:        initial estimiation of k-space data                             (tensor: #kx x #ky x #frame x #coil)
-% Null_learned: learned/ extracted null space                                   (matrix: prod(Kernek_size) x (prod(Kernek_size) -r))
-% Kernel_size:  kernel size                                                     (vector: 1 x 4)
-% Rank:         rank                                                            (scaler)
-% Proj_dim:     projected nullspace dimension                                   (scaler)
-% Denoiser:     denoising subroutine                                            (function handle)
-% Iter_1:       number of iterations                                            (scaler)
-% Iter_2:       number of iterations for gradient descent + exact line search   (scaler)
+% Kdata_ob:      observed k-space data with zero filling                         (tensor: #kx x #ky x #frame x #coil)
+% Mask:          sampling mask for k-space data, True: sampled, False: unsampled (tensor: #kx x #ky x #frame x #coil)
+% Kdata:         initial estimiation of k-space data                             (tensor: #kx x #ky x #frame x #coil)
+% Null_learned:  learned/ extracted null space                                   (matrix: prod(Kernek_size) x (prod(Kernek_size) -r))
+% Kernel_size:   kernel size                                                     (vector: 1 x 4)
+% Rank:          rank                                                            (scaler)
+% Proj_dim:      projected nullspace dimension                                   (scaler)
+% Denoiser:      denoising subroutine                                            (function handle)
+% Iter_1:        number of iterations                                            (scaler)
+% Iter_2:        number of iterations for gradient descent + exact line search   (scaler)
+% ELS_Frequency: frequency of updating step size using exact line search         (scaler)
 % Output ------------------------------------------------------------------
-% Kdata:        estimation of k-space data                                      (tensor: #kx x #ky x #frame x #coil)
-% Null:         output null space                                               (tensor: prod(Kernek_size) x (prod(Kernek_size) -r))
+% Kdata:         estimation of k-space data                                      (tensor: #kx x #ky x #frame x #coil)
+% Null:          output null space                                               (tensor: prod(Kernek_size) x (prod(Kernek_size) -r))
 
 Kdata_cp = CP(Kdata,Kernel_size);
 Mask_cp = CP(Mask,Kernel_size);
@@ -82,20 +83,19 @@ for i = 1:Iter_1
         GD_cp = CP(GD,Kernel_size);           % circular pad the gradient since padded k-space share the same gradient
         
         % ELS: Exact Line Search
-        loss2 = 0;
-        loss3 = 0;
-        
-        for k = 1:Proj_dim
-            C2 = convn(Kdata_cp+GD_cp,F(:,:,:,:,k),'valid');
-            C3 = convn(Kdata_cp-GD_cp,F(:,:,:,:,k),'valid');
-            loss2 = loss2 + sum(abs(C2).^2,'all');
-            loss3 = loss3 + sum(abs(C3).^2,'all');
+        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0 % whether update step size via ELS
+            loss2 = 0;
+            loss3 = 0;            
+            for k = 1:Proj_dim
+                C2 = convn(Kdata_cp+GD_cp,F(:,:,:,:,k),'valid');
+                C3 = convn(Kdata_cp-GD_cp,F(:,:,:,:,k),'valid');
+                loss2 = loss2 + sum(abs(C2).^2,'all');
+                loss3 = loss3 + sum(abs(C3).^2,'all');
+            end            
+            Loss123 = [loss1; loss2; loss3];
+            Coeff = [0 0 1;1 1 1;1 -1 1]\Loss123; % coefficients for ax^2+bx+c
+            stepELS = - Coeff(2)/Coeff(1)/2;      % optimal step size, -b/2a
         end
-        
-        Loss123 = [loss1; loss2; loss3];
-        Coeff = [0 0 1;1 1 1;1 -1 1]\Loss123; % coefficients for ax^2+bx+c
-        stepELS = - Coeff(2)/Coeff(1)/2;      % optimal step size, -b/2a
-        
         Kdata = Kdata + stepELS*GD;
         Kdata_cp = CP(Kdata,Kernel_size);
     end
