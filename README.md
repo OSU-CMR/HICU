@@ -11,7 +11,7 @@ HICU is a computational procedure for accelerated, calibrationless magnetic reso
 3. The optional nondecimated wavelet denoiser is in the file **2D/NWTDenoiser.m**.
 4. To implement the reconstruction for 2D, run file **2D/main.m**.
 
-## 2D+t
+## 2D+T
 1. One 2D+T cardiac cine parallel MRI k-space and two sampling masks are in **2D_T/2D+T_Data**.
 2. The HICU reconstruction subroutine for 2D+T is in **2D+T/HICUsubroutine_2D_T.m**.
 3. To implement the reconstruction for 2D+T, run file **2D+T/main.m**
