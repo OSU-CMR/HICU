@@ -1,6 +1,6 @@
 clear all
 close all
-clc
+% clc
 
 %% Load Data
 addpath('2D_Data');
@@ -24,11 +24,11 @@ Proj_dim = 2*Nc;                        % [tunable] projected nullspace dimensio
 Denoiser = @(Y)NWTDenoiser(Y,1e-5,1e-4);% [tunable] denoising subroutine (optional), no denoiser G = []
 Iter_1 = 100;                           % [tunable] number of iterations: S1R3:100, S1R5:400, S2R3:160, S2R5:1200
 Iter_2 = 3;                             % [tunable] number of iterations for gradient descent + exact line search
-ELS_Frequency = 25;                     % [tunable] Every ELS_Update_Frequency steps of gradient descent, the optimal size is updated via ELS
+ELS_Frequency = 6;                      % [tunable] Every ELS_Update_Frequency steps of gradient descent, the step size is updated via ELS. Higher frequency -> more computation & less accurate step size, too large -> diverge
 
 % Warm start using center of k-space
 disp('Process the center k-space......');tic
-[Kdata_c_hat, Null_c] = HICUsubroutine_2D(Kdata_ob_c, Mask_c, Kdata_ob_c, [], Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2,ELS_Frequency);
+[Kdata_c_hat, Null_c] = HICUsubroutine_2D(Kdata_ob_c, Mask_c, Kdata_ob_c, [], Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, ELS_Frequency);
 
 % Form k-space estimation by replacing center region
 Kdata_hat = Kdata_ob;
@@ -39,7 +39,7 @@ Iter_1 = 50;% [tunable] number of iterations
 Iter_2 = 1; % [tunable] number of iterations for gradient descent + exact line search
 
 disp('Process the full k-space......')
-[Kdata_hat, Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata_hat, Null_c, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2,ELS_Frequency);
+[Kdata_hat, Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata_hat, Null_c, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, ELS_Frequency);
 disp(['HICU reconstructed k-space SNR (dB) is ', num2str(SNR(Kdata_hat,Kdata)),])
 disp(['HICU reconstruction time (s) is: ' num2str(toc)]);
 
