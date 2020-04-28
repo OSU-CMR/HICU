@@ -62,7 +62,7 @@ for i = 1:Iter_1
     F = reshape(flip(Null_tilde,1),[Kernel_size,Proj_dim]);        % flip and reshape to filters
     F_Hermitian = reshape(conj(Null_tilde),[Kernel_size,Proj_dim]);% Hermitian of filters
     
-    %% Solving Least-Squares Subproblem
+    %% Solving Least-Squares Subproblem with (Optional) Denoising
     for j = 1:Iter_2
         % Calculate gradient
         GD = zeros(Data_size,'like',Kdata);% gradient
@@ -74,25 +74,25 @@ for i = 1:Iter_1
         end
         
         % ELS: Exact Line Search
-        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0 % whether update step size via ELS            
+        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0 % whether update step size via ELS
             loss2 = 0;
-            loss3 = 0;            
+            loss3 = 0;
             for k = 1:Proj_dim
                 C2 = convn(Kdata+GD,F(:,:,:,k),'valid');
                 C3 = convn(Kdata-GD,F(:,:,:,k),'valid');
                 loss2 = loss2 + norm(C2,'fro')^2;
                 loss3 = loss3 + norm(C3,'fro')^2;
-            end            
+            end
             Loss123 = [loss1; loss2; loss3];
             Coeff = [0 0 1;1 1 1;1 -1 1]\Loss123;% coefficients for ax^2+bx+c
-            StepELS = - Coeff(2)/Coeff(1)/2;     % optimal step size, -b/2a            
-        end        
+            StepELS = - Coeff(2)/Coeff(1)/2;     % optimal step size, -b/2a
+        end
         Kdata = Kdata + StepELS*GD;
-    end
-    
-    %% Denoising
-    if ~isempty(Denoiser)
-        Kdata = Denoiser(Kdata);     % denoise
-        Kdata(Mask) = Kdata_ob(Mask);% enforce data consistency
+        
+        % Denoising (Denoiseing with GD+ELS is similar to proximal gradient descent)
+        if ~isempty(Denoiser)
+            Kdata = Denoiser(Kdata);     % denoise
+            Kdata(Mask) = Kdata_ob(Mask);% enforce data consistency
+        end
     end
 end
