@@ -85,25 +85,25 @@ for i = 1:Iter_1
         % ELS: Exact Line Search
         if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0 % whether update step size via ELS
             loss2 = 0;
-            loss3 = 0;            
+            loss3 = 0;
             for k = 1:Proj_dim
                 C2 = convn(Kdata_cp+GD_cp,F(:,:,:,:,k),'valid');
                 C3 = convn(Kdata_cp-GD_cp,F(:,:,:,:,k),'valid');
                 loss2 = loss2 + sum(abs(C2).^2,'all');
                 loss3 = loss3 + sum(abs(C3).^2,'all');
-            end            
+            end
             Loss123 = [loss1; loss2; loss3];
             Coeff = [0 0 1;1 1 1;1 -1 1]\Loss123; % coefficients for ax^2+bx+c
             stepELS = - Coeff(2)/Coeff(1)/2;      % optimal step size, -b/2a
         end
         Kdata = Kdata + stepELS*GD;
         Kdata_cp = CP(Kdata,Kernel_size);
-    end
-    
-    %% Denoising
-    if ~isempty(Denoiser)
-        % Y = Denoiser(Y);   % denoiser
-        % Y(M_Y) = Y_o(M_Y); % enforce data consistency
+        
+        % Denoising (Denoiseing with GD+ELS is similar to proximal gradient descent)
+        if ~isempty(Denoiser)
+            Kdata = Denoiser(Kdata);     % denoise
+            Kdata(Mask) = Kdata_ob(Mask);% enforce data consistency
+        end
     end
 end
 end
