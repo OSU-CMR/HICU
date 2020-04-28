@@ -29,8 +29,5 @@ D = fftshift(fftshift(fft(fft(ifftshift(ifftshift(I,2),1),[],2),[],1),2),1);
 end
 
 function I_cp = CP(I)  % circular pad
-I_cp = zeros(size(I)+[1,1,0],'like', I);
-for ii = 1:size(I,3)
-    I_cp(:,:,ii) = padarray(I(:,:,ii),[1,1],'circular','pre');
-end
+I_cp = padarray(I,[1,1,0],'circular','pre');
 end
