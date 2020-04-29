@@ -36,9 +36,9 @@ Kdata = I2D(I);
 end
 
 function I = K2I(Kdata)% k-space to image domain
-I = sqrt(prod(size(Kdata,[1,2])))*fftshift(fftshift(ifft(ifft(ifftshift(ifftshift(Kdata,1),2),[],1),[],2),1),2);
+I = sqrt(size(Kdata,1)*size(Kdata,2))*fftshift(fftshift(ifft(ifft(ifftshift(ifftshift(Kdata,1),2),[],1),[],2),1),2);
 end
 
 function D = I2D(I)    % image domain to k-sapce
-D = 1/sqrt(prod(size(I,[1,2])))*fftshift(fftshift(fft(fft(ifftshift(ifftshift(I,2),1),[],2),[],1),2),1);
+D = 1/sqrt(size(I,1)*size(I,2))*fftshift(fftshift(fft(fft(ifftshift(ifftshift(I,2),1),[],2),[],1),2),1);
 end
