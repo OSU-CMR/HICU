@@ -8,7 +8,7 @@ HICU is a computational procedure for accelerated, calibrationless magnetic reso
 ## 2D
 1. One 2D T2-weighted parallel MRI k-space dataset (https://fastmri.med.nyu.edu/) and four sampling masks are in the folder 2D/2D_data. 
 2. The HICU reconstruction subroutine for 2D is in **2D/HICUsubroutine_2D.m**. 
-3. The optional nondecimated wavelet denoiser is in the file **2D/NWTDenoiser.m**.
+3. The optional nondecimated wavelet denoiser is in the file **2D/SWT_denoiser.m**.
 4. To implement the reconstruction for 2D, run file **2D/main.m**.
 
 ## 2D+T
