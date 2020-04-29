@@ -12,10 +12,10 @@ Center = 1/4;                                                 % [tunable] occupi
 X_keep = round(Nx*(1/2-Center/2)): round(Nx*(1/2+Center/2)-1);% x coordiantes of center region
 Y_keep = round(Ny*(1/2-Center/2)): round(Ny*(1/2+Center/2)-1);% y coordinates of center region
 
-Mask_c = Mask(X_keep, Y_keep,:,:);        % center mask
-Kdata_c = Kdata(X_keep, Y_keep,:,:);      % center k-space
-Kdata_ob = Kdata.*Mask;                   % observed k-space with zero filling
-Kdata_ob_c = Kdata_ob(X_keep, Y_keep,:,:);% center observed k-space with zero filling
+Mask_c = Mask(X_keep, Y_keep,:,:);                                              % center mask
+Kdata_c = Kdata(X_keep, Y_keep,:,:);                                            % center k-space
+Kdata_ob = Kdata.*Mask;                                                         % observed k-space with zero filling
+Kdata_ob_c = Kdata_ob(X_keep, Y_keep,:,:);                                      % center observed k-space with zero filling
 
 Kdata_hat = Kdata_ob;                                                           % estimaition of k-space
 Kdata_hat(~Mask) = nan;                                                         % set unobserved k-space to be nan
@@ -36,6 +36,7 @@ ELS_Frequency = 6;       % [tunable] Every ELS_Update_Frequency steps of gradien
 % Warm start using center of k-space
 disp('Process the center k-space......');tic
 [Kdata_c_hat, Null_c] = HICUsubroutine_2D_T(Kdata_ob_c, Mask_c, Kdata_c_hat, [], Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, ELS_Frequency);
+disp(['HICU reconstructed center k-space SNR (dB) is ', num2str(SNR(Kdata_c_hat,Kdata_c)),])
 
 % Form k-space estimation by replacing center region
 Kdata_hat = Kdata_ob;
