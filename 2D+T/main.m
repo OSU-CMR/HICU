@@ -65,7 +65,7 @@ title('Frame 9, Reference (left), HICU (right), and $10~\times$ Error (second ro
 
 %% Function
 function I = K2I(Kdata) % k-space to image domain
-I = fftshift(fftshift(ifft(ifft(ifftshift(ifftshift(Kdata,1),2),[],1),[],2),1),2);
+I = sqrt(size(Kdata,1)*size(Kdata,2))*fftshift(fftshift(ifft(ifft(ifftshift(ifftshift(Kdata,1),2),[],1),[],2),1),2);
 end
 
 function I_SSoS = SSoS(I)% SSoS comibining
