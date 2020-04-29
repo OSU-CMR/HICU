@@ -8,6 +8,9 @@ function Kdata = SWT_denoiser(Kdata,Step_size,Lam_1,Lam_2)
 % Lam_2:     The lagrange multiplier for band LH HL HH      (scaler)
 % Output ------------------------------------------------------------------
 % Kdata:     k-space data                                   (tensor: #kx x #ky x #coil)
+% See the accompanying license.txt for additional license information.
+% The software is available from https://github.com/OSU-CMR/HICU
+% Author: Shen Zhao, 04/22/2020, Email: zhao.1758@osu.edu
 
 I = K2I(Kdata);
 c = max(abs(I),[],'all');                   % the max absolute value
