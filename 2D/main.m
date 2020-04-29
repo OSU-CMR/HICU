@@ -12,31 +12,32 @@ Center = 1/6;                                                 % [tunable] occupi
 X_keep = round(Nx*(1/2-Center/2)): round(Nx*(1/2+Center/2)-1);% x coordiantes of center region
 Y_keep = round(Ny*(1/2-Center/2)): round(Ny*(1/2+Center/2)-1);% y coordinates of center region
 
-Mask_c = Mask(X_keep, Y_keep,:);        % center mask
-Kdata_c = Kdata(X_keep, Y_keep,:);      % center k-space
-Kdata_ob = Kdata.*Mask;                 % observed k-space with zero filling
-Kdata_ob_c = Kdata_ob(X_keep, Y_keep,:);% center observed k-space with zero filling
+Mask_c = Mask(X_keep, Y_keep,:);                              % center mask
+Kdata_c = Kdata(X_keep, Y_keep,:);                            % center k-space
+Kdata_ob = Kdata.*Mask;                                       % observed k-space with zero filling
+Kdata_ob_c = Kdata_ob(X_keep, Y_keep,:);                      % center observed k-space with zero filling
 
 %% HICU Reconstruction
-Kernel_size = [5,5,Nc];                 % [tunable] kernel size: [5,5,Nc] is empirically large enough for most 2D parallel imaging
-Rank = 40;                              % [tunable] rank
-Proj_dim = 2*Nc;                        % [tunable] projected nullspace dimension: Nc~2*Nc empirically balances between SNR and speed for 2D
-Denoiser = @(Y)NWTDenoiser(Y,1e-5,1e-4);% [tunable] denoising subroutine (optional), no denoiser G = []
-Iter_1 = 100;                           % [tunable] number of iterations: S1R3:100, S1R5:400, S2R3:160, S2R5:1200
-Iter_2 = 3;                             % [tunable] number of iterations for gradient descent + exact line search
-ELS_Frequency = 6;                      % [tunable] Every ELS_Update_Frequency steps of gradient descent, the step size is updated via ELS. Higher frequency -> more computation & less accurate step size, too large -> diverge
+Kernel_size = [5,5,Nc];                                                                       % [tunable] kernel size: [5,5,Nc] is empirically large enough for most 2D parallel imaging
+Rank = 40;                                                                                    % [tunable] rank
+Proj_dim = 2*Nc;                                                                              % [tunable] projected nullspace dimension: Nc~2*Nc empirically balances between SNR and speed for 2D. If Proj_dim = nullity, then no projection.
+Denoiser = @(I,Step_size)SWT_denoiser(I,Step_size, Proj_dim^2*1.1836e-8,Proj_dim^2*1.1836e-6);% [tunable] denoising subroutine (optional), no denoiser G = []
+Iter_1 = 100;                                                                                 % [tunable] number of iterations: S1R3:100, S1R5:400, S2R3:160, S2R5:1200
+Iter_2 = 3;                                                                                   % [tunable] number of iterations for gradient descent + exact line search
+ELS_Frequency = 6;                                                                            % [tunable] Every ELS_Update_Frequency steps of gradient descent, the step size is updated via ELS. Higher frequency -> more computation & less accurate step size, too large -> diverge
 
 % Warm start using center of k-space
 disp('Process the center k-space......');tic
 [Kdata_c_hat, Null_c] = HICUsubroutine_2D(Kdata_ob_c, Mask_c, Kdata_ob_c, [], Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, ELS_Frequency);
+disp(['HICU reconstructed center k-space SNR (dB) is ', num2str(SNR(Kdata_c_hat,Kdata_c)),])
 
 % Form k-space estimation by replacing center region
 Kdata_hat = Kdata_ob;
 Kdata_hat(X_keep, Y_keep,:) = Kdata_c_hat;
 
 % Process on full k-space array
-Iter_1 = 50;% [tunable] number of iterations
-Iter_2 = 1; % [tunable] number of iterations for gradient descent + exact line search
+Iter_1 = 50;                                                                                  % [tunable] number of iterations
+Iter_2 = 1;                                                                                   % [tunable] number of iterations for gradient descent + exact line search
 
 disp('Process the full k-space......')
 [Kdata_hat, Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata_hat, Null_c, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, ELS_Frequency);
@@ -57,7 +58,7 @@ title('Reference (left), HICU (right), and $10~\times$ Error (second row)','Inte
 
 %% Function
 function I = K2I(Kdata)  % k-space to image domain
-I = fftshift(fftshift(ifft(ifft(ifftshift(ifftshift(Kdata,1),2),[],1),[],2),1),2);
+I = sqrt(prod(size(Kdata,[1,2])))*fftshift(fftshift(ifft(ifft(ifftshift(ifftshift(Kdata,1),2),[],1),[],2),1),2);
 end
 
 function I_SSoS = SSoS(I)% SSoS comibining
