@@ -58,10 +58,14 @@ for i = 1:Iter_1
     end
     
     %% Nullspace Dimensionality Reduction
-    Null_tilde = Null*randn(size(Null,2),Proj_dim);                % project to Proj_dim dimension
-    F = reshape(flip(Null_tilde,1),[Kernel_size,Proj_dim]);        % flip and reshape to filters
-    F_Hermitian = reshape(conj(Null_tilde),[Kernel_size,Proj_dim]);% Hermitian of filters
-    
+    if Proj_dim == prod(Kernel_size)-Rank                                 % Proj_dim = nullity then no random projection
+        Null_tilde = Null;
+    else
+        Null_tilde = Null*randn(size(Null,2),Proj_dim)/sqrt(size(Null,2));% project to Proj_dim dimension
+    end
+    F = reshape(flip(Null_tilde,1),[Kernel_size,Proj_dim]);               % flip and reshape to filters
+    F_Hermitian = reshape(conj(Null_tilde),[Kernel_size,Proj_dim]);       % Hermitian of filters
+        
     %% Solving Least-Squares Subproblem with (Optional) Denoising
     for j = 1:Iter_2
         % Calculate gradient
@@ -85,14 +89,14 @@ for i = 1:Iter_1
             end
             Loss123 = [loss1; loss2; loss3];
             Coeff = [0 0 1;1 1 1;1 -1 1]\Loss123;% coefficients for ax^2+bx+c
-            StepELS = - Coeff(2)/Coeff(1)/2;     % optimal step size, -b/2a
+            Step_ELS = - Coeff(2)/Coeff(1)/2;    % optimal step size, -b/2a
         end
-        Kdata = Kdata + StepELS*GD;
+        Kdata = Kdata + Step_ELS*GD;
         
         % Denoising (Denoiseing with GD+ELS is similar to proximal gradient descent)
         if ~isempty(Denoiser)
-            Kdata = Denoiser(Kdata);     % denoise
-            Kdata(Mask) = Kdata_ob(Mask);% enforce data consistency
+            Kdata = Denoiser(Kdata, Step_ELS);% denoise
+            Kdata(Mask) = Kdata_ob(Mask);     % enforce data consistency
         end
     end
 end
