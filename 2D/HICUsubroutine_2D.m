@@ -97,7 +97,7 @@ for i = 1:Iter_1
         % Denoising (Denoiseing with GD+ELS is similar to proximal gradient descent)
         if ~isempty(Denoiser)
             Kdata = Denoiser(Kdata, Proj_dim^2*Step_ELS);% denoise
-            Kdata(Mask) = Kdata_ob(Mask);     % enforce data consistency
+            Kdata(Mask) = Kdata_ob(Mask);                % enforce data consistency
         end
     end
 end
