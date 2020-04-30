@@ -69,27 +69,20 @@ for i = 1:Iter_1
     %% Solving Least-Squares Subproblem with (Optional) Denoising
     for j = 1:Iter_2
         % Calculate gradient
-        GD = zeros(Data_size,'like',Kdata);% gradient
-        loss1 = 0;
+        GD = zeros(Data_size,'like',Kdata);% gradient        
         for k = 1:Proj_dim
             C1 = convn(Kdata,F(:,:,:,k),'valid');
-            GD = GD + 2*convn(C1,F_Hermitian(:,:,:,k)).*(~Mask);
-            loss1 = loss1 + norm(C1,'fro')^2;
+            GD = GD + 2*convn(C1,F_Hermitian(:,:,:,k)).*(~Mask);            
         end
         
         % ELS: Exact Line Search
         if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0 % whether update step size via ELS
-            loss2 = 0;
-            loss3 = 0;
-            for k = 1:Proj_dim
-                C2 = convn(Kdata+GD,F(:,:,:,k),'valid');
-                C3 = convn(Kdata-GD,F(:,:,:,k),'valid');
-                loss2 = loss2 + norm(C2,'fro')^2;
-                loss3 = loss3 + norm(C3,'fro')^2;
+            Denominator = 0;                                                                 % For ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
+            for k = 1:Proj_dim                
+                Denominator = Denominator+ 2*sum(abs(convn(GD,F(:,:,:,k),'valid')).^2,'all');% For ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)           
             end
-            Loss123 = [loss1; loss2; loss3];
-            Coeff = [0 0 1;1 1 1;1 -1 1]\Loss123;% coefficients for ax^2+bx+c
-            Step_ELS = - Coeff(2)/Coeff(1)/2;    % optimal step size, -b/2a
+            Numerator = sum(abs(GD).^2,'all');            
+            Step_ELS = -Numerator/Denominator;                                               % optimal step size
         end
         Kdata = Kdata + Step_ELS*GD;
         
