@@ -87,7 +87,7 @@ for i = 1:Iter_1
         GD_cp = CP(GD,Kernel_size);                                                               % circular pad the gradient since padded k-space share the same gradient
         
         % ELS: Exact Line Search
-        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0 % whether update step size via ELS
+        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0                                               % whether update step size via ELS
             Denominator = 0;                                                                      % For ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
             for k = 1:Proj_dim
                 Denominator = Denominator+ 2*sum(abs(convn(GD_cp,F(:,:,:,:,k),'valid')).^2,'all');% For ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
