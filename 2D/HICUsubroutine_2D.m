@@ -62,7 +62,6 @@ for i = 1:Iter_1
         Null_tilde = Null;
     else
         Null_tilde = Null*randn(size(Null,2),Proj_dim)/sqrt(size(Null,2));% project to Proj_dim dimension
-        [Null_tilde,~] = qr(Null_tilde,0);
     end
     F = reshape(flip(Null_tilde,1),[Kernel_size,Proj_dim]);               % flip and reshape to filters
     F_Hermitian = reshape(conj(Null_tilde),[Kernel_size,Proj_dim]);       % Hermitian of filters
