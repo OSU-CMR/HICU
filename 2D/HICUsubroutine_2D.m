@@ -62,10 +62,11 @@ for i = 1:Iter_1
         Null_tilde = Null;
     else
         Null_tilde = Null*randn(size(Null,2),Proj_dim)/sqrt(size(Null,2));% project to Proj_dim dimension
+        [Null_tilde,~] = qr(Null_tilde,0);
     end
     F = reshape(flip(Null_tilde,1),[Kernel_size,Proj_dim]);               % flip and reshape to filters
     F_Hermitian = reshape(conj(Null_tilde),[Kernel_size,Proj_dim]);       % Hermitian of filters
-        
+    
     %% Solving Least-Squares Subproblem with (Optional) Denoising
     for j = 1:Iter_2
         % Calculate gradient
@@ -95,7 +96,7 @@ for i = 1:Iter_1
         
         % Denoising (Denoiseing with GD+ELS is similar to proximal gradient descent)
         if ~isempty(Denoiser)
-            Kdata = Denoiser(Kdata, Step_ELS);% denoise
+            Kdata = Denoiser(Kdata, Proj_dim^2*Step_ELS);% denoise
             Kdata(Mask) = Kdata_ob(Mask);     % enforce data consistency
         end
     end
