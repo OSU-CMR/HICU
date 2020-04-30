@@ -82,23 +82,18 @@ for i = 1:Iter_1
             loss1 = loss1 + sum(abs(C1).^2,'all');
         end
         
-        GD = GD_cp(:,:,Kernel_size(3):end,:); % gradient for the k-space
+        GD = GD_cp(:,:,Kernel_size(3):end,:);                                                     % gradient for the k-space
         GD(:,:,end-Kernel_size(3)+2:end,:) = GD_cp(:,:,end-Kernel_size(3)+2:end,:) + GD_cp(:,:,1:Kernel_size(3)-1,:);
-        GD_cp = CP(GD,Kernel_size);           % circular pad the gradient since padded k-space share the same gradient
+        GD_cp = CP(GD,Kernel_size);                                                               % circular pad the gradient since padded k-space share the same gradient
         
         % ELS: Exact Line Search
         if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0 % whether update step size via ELS
-            loss2 = 0;
-            loss3 = 0;
+            Denominator = 0;                                                                      % For ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
             for k = 1:Proj_dim
-                C2 = convn(Kdata_cp+GD_cp,F(:,:,:,:,k),'valid');
-                C3 = convn(Kdata_cp-GD_cp,F(:,:,:,:,k),'valid');
-                loss2 = loss2 + sum(abs(C2).^2,'all');
-                loss3 = loss3 + sum(abs(C3).^2,'all');
+                Denominator = Denominator+ 2*sum(abs(convn(GD_cp,F(:,:,:,:,k),'valid')).^2,'all');% For ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
             end
-            Loss123 = [loss1; loss2; loss3];
-            Coeff = [0 0 1;1 1 1;1 -1 1]\Loss123; % coefficients for ax^2+bx+c
-            Step_ELS = - Coeff(2)/Coeff(1)/2;      % optimal step size, -b/2a
+            Numerator = sum(abs(GD).^2,'all');
+            Step_ELS = -Numerator/Denominator;                                                    % optimal step size
         end
         Kdata = Kdata + Step_ELS*GD;
         Kdata_cp = CP(Kdata,Kernel_size);
