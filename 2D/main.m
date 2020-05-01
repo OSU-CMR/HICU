@@ -21,7 +21,7 @@ Kdata_ob_c = Kdata_ob(X_keep, Y_keep,:);                                 % cente
 Kernel_size = [5,5,Nc];                                                  % [tunable] kernel size: [5,5,Nc] is empirically large enough for most 2D parallel imaging
 Rank = 40;                                                               % [tunable] rank
 Proj_dim = 2*Nc;                                                         % [tunable] projected nullspace dimension: Nc~2*Nc empirically balances between SNR and speed for 2D. If Proj_dim = nullity, then no projection.
-Denoiser = @(I,Step_size)SWT_denoiser(I,Step_size, 1.1836e-8, 1.1836e-6);% [tunable] denoising subroutine (optional), no denoiser G = []
+Denoiser = @(I,Step_size)SWT_denoiser(I,Step_size, 1.1836e-8, 1.1836e-6);% [tunable] denoising subroutine (optional), no denoiser G = [], paired denoiser -> better SNR, lower speed
 Iter_1 = 100;                                                            % [tunable] number of iterations: S1R3:100, S1R5:400, S2R3:160, S2R5:1200
 Iter_2 = 3;                                                              % [tunable] number of iterations for gradient descent + exact line search
 GD_option = 2;                                                           % [tunable] options of calculating graident, 1: without padding -> accurate & slow, 2. with zero padding approximation -> less accurate & fast
