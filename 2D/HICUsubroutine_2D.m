@@ -19,7 +19,7 @@ function [Kdata,Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata, Null_learned, K
 % Denoiser:      denoising subroutine                                                                      (function handle)
 % Iter_1:        number of iterations                                                                      (scaler)
 % Iter_2:        number of iterations for gradient descent + exact line search                             (scaler)
-% GD_Option:     choices to calculate graident, 1: Without approximation 2:with zero padding approximation (scaler)
+% GD_Option:     choices to calculate graident, 1: without approximation 2:with zero padding approximation (scaler)
 % ELS_Frequency: frequency of updating step size using exact line search                                   (scaler)
 % Output ------------------------------------------------------------------
 % Kdata:        estimation of k-space data                                                                 (tensor: #kx x #ky x #coil)
@@ -51,7 +51,7 @@ for i = 1:Iter_1
         end
         % Eigendecomposition
         [V,Lam] = eig(Gram);
-        [~,ind] = sort(real(diag(Lam)),'ascend');% enforce real due to possible unexpected round-off error for case 1 above
+        [~,ind] = sort(real(diag(Lam)),'ascend');                                                                      % enforce real due to possible unexpected round-off error for case 1 above
         V = V(:,ind);
         Null = V(:,1:prod(Kernel_size)-Rank);
     else
@@ -74,8 +74,7 @@ for i = 1:Iter_1
             case 1 % calculate gradient wihout approximation
                 GD = zeros(Data_size,'like',Kdata);% gradient
                 for k = 1:Proj_dim
-                    C1 = convn(Kdata,F(:,:,:,k),'valid');
-                    GD = GD + 2*convn(C1,F_Hermitian(:,:,:,k)).*(~Mask);
+                    GD = GD + 2*convn(convn(Kdata,F(:,:,:,k),'valid'),F_Hermitian(:,:,:,k)).*(~Mask);
                 end
             case 2 % calulate gradient with approximation using zero padding
                 Combined_filters = zeros([Kernel_size(1:end-1)*2-1,Kernel_size([end,end])]);                           % sum_i A*Bi*Ci ~= sum_i A*(B_i*C_i), sum_i(B_i*C_i) corresponds to the Comibined_filters
@@ -88,14 +87,14 @@ for i = 1:Iter_1
                 for c = 1:Kernel_size(end)                                                                             % index of coil
                     GD = GD+convn(Combined_filters(:,:,:,c),Kdata(:,:,c));
                 end
-                GD = 2*GD(Kernel_size(1):end-Kernel_size(1)+1, Kernel_size(2):end-Kernel_size(2)+1,:).*(~Mask);        % Omit the result outside the k-space boundary
+                GD = 2*GD(Kernel_size(1):end-Kernel_size(1)+1, Kernel_size(2):end-Kernel_size(2)+1,:).*(~Mask);        % omit the result outside the k-space boundary
         end
         
         % ELS: Exact Line Search
-        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0                                                                    % whether update step size via ELS
-            Denominator = 0;                                                                                           % For ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
+        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0                                                                    % whether update step size via ELS = numerator/denominator
+            Denominator = 0;                                                                                           % for ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
             for k = 1:Proj_dim
-                Denominator = Denominator+ 2*sum(abs(convn(GD,F(:,:,:,k),'valid')).^2,'all');                          % For ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
+                Denominator = Denominator+ 2*sum(abs(convn(GD,F(:,:,:,k),'valid')).^2,'all');                          % for ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
             end
             Numerator = sum(abs(GD).^2,'all');
             Step_ELS = -Numerator/Denominator;                                                                         % optimal step size
