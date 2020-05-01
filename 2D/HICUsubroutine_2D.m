@@ -77,7 +77,7 @@ for i = 1:Iter_1
                     GD = GD + convn(convn(Kdata,F(:,:,:,k),'valid'),F_Hermitian(:,:,:,k));
                 end
                 GD = 2*GD.*(~Mask);
-            case 2 % calulate gradient with approximation using zero padding
+            case 2 % calculate gradient with approximation using zero padding
                 if j == 1                                                                                              % combined filter is calculated only one time insider least-squares subproblem
                     Combined_filters = zeros([Kernel_size(1:end-1)*2-1,Kernel_size([end,end])]);                       % sum_i A*Bi*Ci ~= sum_i A*(B_i*C_i), sum_i(B_i*C_i) corresponds to the Comibined_filters
                     for c = 1:Kernel_size(end)                                                                         % index of coil
