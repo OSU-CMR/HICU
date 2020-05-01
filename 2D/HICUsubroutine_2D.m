@@ -36,15 +36,15 @@ for i = 1:Iter_1
             case 1 % build Grammian from convolution operator: memory efficient but relative slow in Matalb
                 Gram = zeros(prod(Kernel_size), 'like', Kdata_ob);
                 for l = 1:prod(Kernel_size)
-                    [coord_1,coord_2,coord_3] = ind2sub(Kernel_size,l);                                              % coordinate inside the kernel
-                    Kdata_part = Kdata(coord_1+(0:Diff_size(1)), coord_2+(0:Diff_size(2)), coord_3+(0:Diff_size(3)));% part of the k-space
-                    Kdata_part(end:-1:1) = Kdata_part;                                                               % flip in all dimension
+                    [coord_1,coord_2,coord_3] = ind2sub(Kernel_size,l);                                                % coordinate inside the kernel
+                    Kdata_part = Kdata(coord_1+(0:Diff_size(1)), coord_2+(0:Diff_size(2)), coord_3+(0:Diff_size(3)));  % part of the k-space
+                    Kdata_part(end:-1:1) = Kdata_part;                                                                 % flip in all dimension
                     Gram(:,l) = reshape(convn(conj(Kdata), Kdata_part,'valid'), [],1);
                 end
             case 2 % build Grammian from explicit matrix: memory inefficient but relative fast in Matalb
                 A = zeros(prod(Data_size-Kernel_size+1 ), prod(Kernel_size), 'like', Kdata_ob );
                 for l = 1:prod(Kernel_size)
-                    [coord_1,coord_2,coord_3] = ind2sub(Kernel_size,l);                                              % coordinate inside the kernel
+                    [coord_1,coord_2,coord_3] = ind2sub(Kernel_size,l);                                                % coordinate inside the kernel
                     A(:,l) = reshape(Kdata(coord_1+(0:Diff_size(1)), coord_2+(0:Diff_size(2)), coord_3+(0:Diff_size(3))), [],1);
                 end
                 Gram = A'*A;
@@ -59,13 +59,13 @@ for i = 1:Iter_1
     end
     
     %% Nullspace Dimensionality Reduction
-    if Proj_dim == prod(Kernel_size)-Rank                                 % Proj_dim = nullity then no random projection
+    if Proj_dim == prod(Kernel_size)-Rank                                                                              % Proj_dim = nullity then no random projection
         Null_tilde = Null;
     else
-        Null_tilde = Null*randn(size(Null,2),Proj_dim)/sqrt(size(Null,2));% project to Proj_dim dimension
+        Null_tilde = Null*randn(size(Null,2),Proj_dim)/sqrt(size(Null,2));                                             % project to Proj_dim dimension
     end
-    F = reshape(flip(Null_tilde,1),[Kernel_size,Proj_dim]);               % flip and reshape to filters
-    F_Hermitian = reshape(conj(Null_tilde),[Kernel_size,Proj_dim]);       % Hermitian of filters
+    F = reshape(flip(Null_tilde,1),[Kernel_size,Proj_dim]);                                                            % flip and reshape to filters
+    F_Hermitian = reshape(conj(Null_tilde),[Kernel_size,Proj_dim]);                                                    % Hermitian of filters
     
     %% Solving Least-Squares Subproblem with (Optional) Denoising
     for j = 1:Iter_2
