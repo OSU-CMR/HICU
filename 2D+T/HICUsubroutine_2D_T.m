@@ -74,12 +74,9 @@ for i = 1:Iter_1
     %% Solving Least-Squares Subproblem
     for j = 1:Iter_2
         % Calculate gradient
-        GD_cp = zeros(Data_cp_size,'like',Kdata_cp); % gradient for the circular padded k-space
-        loss1 = 0;
-        for k = 1:Proj_dim
-            C1 = convn(Kdata_cp,F(:,:,:,:,k),'valid');
-            GD_cp = GD_cp + 2*convn(C1,F_Hermitian(:,:,:,:,k)).*(~Mask_cp);
-            loss1 = loss1 + sum(abs(C1).^2,'all');
+        GD_cp = zeros(Data_cp_size,'like',Kdata_cp); % gradient for the circular padded k-space        
+        for k = 1:Proj_dim            
+            GD_cp = GD_cp + 2*convn(convn(Kdata_cp,F(:,:,:,:,k),'valid'),F_Hermitian(:,:,:,:,k)).*(~Mask_cp);            
         end
         
         GD = GD_cp(:,:,Kernel_size(3):end,:);                                                     % gradient for the k-space
