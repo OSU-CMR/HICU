@@ -14,8 +14,8 @@ function Kdata = SWT_denoiser(Kdata,Step_size,Lam_1,Lam_2)
 
 
 I = K2I(Kdata);
-c = max(abs(I),[],'all');                   % the max absolute value
-I = I/c;                                    % normalize
+c = max(abs(I),[],'all');% the max absolute value
+I = I/c;                 % normalize
 I_cp = padarray(I,[1,1,0],'circular','pre');
 
 % Generate station wavelet bands
@@ -32,13 +32,14 @@ I_HH = max(abs(I_HH)-Lam_2*abs(Step_size),0).*exp(1j*angle(I_HH));
 
 I = I_LL + I_LH + I_HL + I_HH;
 I = I*c;
+
 Kdata = I2D(I);
 end
 
-function I = K2I(Kdata)% k-space to image domain
+function I = K2I(Kdata)   % k-space to image domain
 I = sqrt(size(Kdata,1)*size(Kdata,2))*fftshift(fftshift(ifft(ifft(ifftshift(ifftshift(Kdata,1),2),[],1),[],2),1),2);
 end
 
-function D = I2D(I)    % image domain to k-sapce
+function D = I2D(I)       % image domain to k-sapce
 D = 1/sqrt(size(I,1)*size(I,2))*fftshift(fftshift(fft(fft(ifftshift(ifftshift(I,2),1),[],2),[],1),2),1);
 end
