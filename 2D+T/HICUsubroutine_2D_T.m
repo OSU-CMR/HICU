@@ -55,7 +55,7 @@ for i = 1:Iter_1
         end
         % Eigendecomposition
         [V,Lam] = eig(Gram);
-        [~,ind] = sort(real(diag(Lam)),'ascend'); % enforce real due to possible unexpected round-off error for case 1 above
+        [~,ind] = sort(real(diag(Lam)),'ascend');                                                  % enforce real due to possible unexpected round-off error for case 1 above
         V = V(:,ind);
         Null = V(:,1:prod(Kernel_size)-Rank);
     else
@@ -63,13 +63,13 @@ for i = 1:Iter_1
     end
     
     %% Nullspace Dimensionality Reduction
-    if Proj_dim == prod(Kernel_size)-Rank                                 % Proj_dim = nullity then no random projection
+    if Proj_dim == prod(Kernel_size)-Rank                                                          % Proj_dim = nullity then no random projection
         Null_tilde = Null;
     else
-        Null_tilde = Null*randn(size(Null,2),Proj_dim)/sqrt(size(Null,2));% project to Proj_dim dimension
+        Null_tilde = Null*randn(size(Null,2),Proj_dim)/sqrt(size(Null,2));                         % project to Proj_dim dimension
     end
-    F = reshape(flip(Null_tilde,1),[Kernel_size,Proj_dim]);               % flip and reshape to filters
-    F_Hermitian = reshape(conj(Null_tilde),[Kernel_size,Proj_dim]);       % Hermitian of filters
+    F = reshape(flip(Null_tilde,1),[Kernel_size,Proj_dim]);                                        % flip and reshape to filters
+    F_Hermitian = reshape(conj(Null_tilde),[Kernel_size,Proj_dim]);                                % Hermitian of filters
     
     %% Solving Least-Squares Subproblem
     for j = 1:Iter_2
@@ -105,6 +105,6 @@ end
 end
 
 %% Function
-function Y_cp = CP(Y,m) % circular padding along time dimension (for circular convolution along time dimension)
+function Y_cp = CP(Y,m)                                                                          % circular padding along time dimension (for circular convolution along time dimension)
 Y_cp = padarray(Y,[0 0 m(3)-1 0],'circular','pre');
 end
