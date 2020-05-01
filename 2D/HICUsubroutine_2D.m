@@ -79,13 +79,13 @@ for i = 1:Iter_1
                 end
             case 2 % calulate gradient with approximation using zero padding
                 Combined_filters = zeros([Kernel_size(1:end-1)*2-1,Kernel_size([end,end])]);                           % sum_i A*Bi*Ci ~= sum_i A*(B_i*C_i), sum_i(B_i*C_i) corresponds to the Comibined_filters
-                for c = 1:Kernel_size(end) % index of coil
+                for c = 1:Kernel_size(end)                                                                             % index of coil
                     for k = 1:Proj_dim
                         Combined_filters(:,:,:,c) = Combined_filters(:,:,:,c)+convn(F(:,:,Kernel_size(end)-c+1,k),F_Hermitian(:,:,:,k));
                     end
                 end
                 GD = zeros(Data_size(1)+2*Kernel_size(1)-2, Data_size(2)+2*Kernel_size(2)-2,Data_size(3),'like',Kdata);% gradient
-                for c = 1:Kernel_size(end) % index of coil
+                for c = 1:Kernel_size(end)                                                                             % index of coil
                     GD = GD+convn(Combined_filters(:,:,:,c),Kdata(:,:,c));
                 end
                 GD = 2*GD(Kernel_size(1):end-Kernel_size(1)+1, Kernel_size(2):end-Kernel_size(2)+1,:).*(~Mask);        % Omit the result outside the k-space boundary
