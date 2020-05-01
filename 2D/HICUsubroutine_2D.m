@@ -78,7 +78,7 @@ for i = 1:Iter_1
                     GD = GD + 2*convn(C1,F_Hermitian(:,:,:,k)).*(~Mask);
                 end
             case 2 % calulate gradient with approximation using zero padding
-                Combined_filters = zeros([Kernel_size(1:end-1)*2-1,Kernel_size([end,end])]);                    % sum_i A*Bi*Ci ~= sum_i A*(B_i*C_i), sum_i(B_i*C_i) corresponds to the Comibined_filters
+                Combined_filters = zeros([Kernel_size(1:end-1)*2-1,Kernel_size([end,end])]);                           % sum_i A*Bi*Ci ~= sum_i A*(B_i*C_i), sum_i(B_i*C_i) corresponds to the Comibined_filters
                 for c = 1:Kernel_size(end) % index of coil
                     for k = 1:Proj_dim
                         Combined_filters(:,:,:,c) = Combined_filters(:,:,:,c)+convn(F(:,:,Kernel_size(end)-c+1,k),F_Hermitian(:,:,:,k));
@@ -88,24 +88,24 @@ for i = 1:Iter_1
                 for c = 1:Kernel_size(end) % index of coil
                     GD = GD+convn(Combined_filters(:,:,:,c),Kdata(:,:,c));
                 end
-                GD = 2*GD(Kernel_size(1):end-Kernel_size(1)+1, Kernel_size(2):end-Kernel_size(2)+1,:).*(~Mask); % Omit the result outside the k-space boundary
+                GD = 2*GD(Kernel_size(1):end-Kernel_size(1)+1, Kernel_size(2):end-Kernel_size(2)+1,:).*(~Mask);        % Omit the result outside the k-space boundary
         end
         
         % ELS: Exact Line Search
-        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0                                                             % whether update step size via ELS
-            Denominator = 0;                                                                                    % For ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
+        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0                                                                    % whether update step size via ELS
+            Denominator = 0;                                                                                           % For ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
             for k = 1:Proj_dim
-                Denominator = Denominator+ 2*sum(abs(convn(GD,F(:,:,:,k),'valid')).^2,'all');                   % For ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
+                Denominator = Denominator+ 2*sum(abs(convn(GD,F(:,:,:,k),'valid')).^2,'all');                          % For ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
             end
             Numerator = sum(abs(GD).^2,'all');
-            Step_ELS = -Numerator/Denominator;                                                                  % optimal step size
+            Step_ELS = -Numerator/Denominator;                                                                         % optimal step size
         end
         Kdata = Kdata + Step_ELS*GD;
         
         % Denoise (Denoiseing with GD+ELS is similar to proximal gradient descent)
         if ~isempty(Denoiser)
-            Kdata = Denoiser(Kdata, Proj_dim^2*Step_ELS);                                                       % denoise
-            Kdata(Mask) = Kdata_ob(Mask);                                                                       % enforce data consistency
+            Kdata = Denoiser(Kdata, Proj_dim^2*Step_ELS);                                                              % denoise
+            Kdata(Mask) = Kdata_ob(Mask);                                                                              % enforce data consistency
         end
     end
 end
