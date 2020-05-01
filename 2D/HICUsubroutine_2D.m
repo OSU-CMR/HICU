@@ -1,4 +1,4 @@
-function [Kdata,Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata, Null_learned, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_Option, ELS_Frequency)
+function [Kdata,Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata, Null_learned, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency)
 % This function provides capabilities to reconstruct undersampled multi-channel 2D k-space using HICU
 % The problem formulations implemented by this softwere originally reported in:
 % [1] Zhao, Shen, et al. "Convolutional Framework for Accelerated Magnetic Resonance Imaging." arXiv preprint arXiv:2002.03225 (2020).
@@ -19,8 +19,8 @@ function [Kdata,Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata, Null_learned, K
 % Denoiser:      denoising subroutine                                                                      (function handle)
 % Iter_1:        number of iterations                                                                      (scaler)
 % Iter_2:        number of iterations for gradient descent + exact line search                             (scaler)
-% GD_Option:     choices to calculate graident, 1: without approximation 2:with zero padding approximation (scaler)
-% ELS_Frequency: frequency of updating step size using exact line search                                   (scaler)
+% GD_option:     choices to calculate graident, 1: without approximation 2:with zero padding approximation (scaler)
+% ELS_frequency: frequency of updating step size using exact line search                                   (scaler)
 % Output ------------------------------------------------------------------
 % Kdata:        estimation of k-space data                                                                 (tensor: #kx x #ky x #coil)
 % Null:         output null space                                                                          (tensor: prod(Kernek_size) x (prod(Kernek_size) -r))
@@ -70,7 +70,7 @@ for i = 1:Iter_1
     %% Solving Least-Squares Subproblem with (Optional) Denoising
     for j = 1:Iter_2
         % Calulate gradient
-        switch GD_Option
+        switch GD_option
             case 1 % calculate gradient wihout approximation
                 GD = zeros(Data_size,'like',Kdata);% gradient
                 for k = 1:Proj_dim
@@ -91,7 +91,7 @@ for i = 1:Iter_1
         end
         
         % ELS: Exact Line Search
-        if mod((i-1)*Iter_2+j-1,ELS_Frequency) == 0                                                                    % whether update step size via ELS = numerator/denominator
+        if mod((i-1)*Iter_2+j-1,ELS_frequency) == 0                                                                    % whether update step size via ELS = numerator/denominator
             Denominator = 0;                                                                                           % for ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
             for k = 1:Proj_dim
                 Denominator = Denominator+ 2*sum(abs(convn(GD,F(:,:,:,k),'valid')).^2,'all');                          % for ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
