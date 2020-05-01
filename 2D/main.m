@@ -58,14 +58,14 @@ axis ('image', 'off')
 title('Reference (left), HICU (right), and $10~\times$ Error (second row)','Interpreter','latex')
 
 %% Function
-function I = K2I(Kdata)  % k-space to image domain
+function I = K2I(Kdata)                                                  % k-space to image domain
 I = sqrt(size(Kdata,1)*size(Kdata,2))*fftshift(fftshift(ifft(ifft(ifftshift(ifftshift(Kdata,1),2),[],1),[],2),1),2);
 end
 
-function I_SSoS = SSoS(I)% SSoS comibining
+function I_SSoS = SSoS(I)                                                % SSoS comibining
 I_SSoS = sum(abs(I).^2,ndims(I)).^0.5;
 end
 
-function snr = SNR(X,Ref)% calculate the SNR
+function snr = SNR(X,Ref)                                                % calculate the SNR
 snr = -20*log10(norm(X(:)-Ref(:))/norm(Ref(:)));
 end
