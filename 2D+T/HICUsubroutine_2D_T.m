@@ -1,4 +1,4 @@
-function [Kdata,Null] = HICUsubroutine_2D_T(Kdata_ob, Mask, Kdata, Null_learned, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, ELS_frequency)
+function [Kdata,Null] = HICUsubroutine_2D_T(Kdata_ob, Mask, Kdata, Null_learned, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency)
 % This function provides capabilities to reconstruct undersampled multi-channel 2D+T k-space using HICU
 % The problem formulations implemented by this softwere originally reported in:
 % [1] Zhao, Shen, et al. "Convolutional Framework for Accelerated Magnetic Resonance Imaging." arXiv preprint arXiv:2002.03225 (2020).
@@ -9,32 +9,34 @@ function [Kdata,Null] = HICUsubroutine_2D_T(Kdata_ob, Mask, Kdata, Null_learned,
 % Author: Shen Zhao, 04/22/2020, Email: zhao.1758@osu.edu
 %
 % Input -------------------------------------------------------------------
-% Kdata_ob:      observed k-space data with zero filling                         (tensor: #kx x #ky x #frame x #coil)
-% Mask:          sampling mask for k-space data, True: sampled, False: unsampled (tensor: #kx x #ky x #frame x #coil)
-% Kdata:         initial estimiation of k-space data                             (tensor: #kx x #ky x #frame x #coil)
-% Null_learned:  learned/ extracted null space                                   (matrix: prod(Kernek_size) x (prod(Kernek_size) -r))
-% Kernel_size:   kernel size                                                     (vector: 1 x 4)
-% Rank:          rank                                                            (scaler)
-% Proj_dim:      projected nullspace dimension                                   (scaler)
-% Denoiser:      denoising subroutine                                            (function handle)
-% Iter_1:        number of iterations                                            (scaler)
-% Iter_2:        number of iterations for gradient descent + exact line search   (scaler)
-% ELS_frequency: frequency of updating step size using exact line search         (scaler)
+% Kdata_ob:      observed k-space data with zero filling                                     (tensor: #kx x #ky x #frame x #coil)
+% Mask:          sampling mask for k-space data, True: sampled, False: unsampled             (tensor: #kx x #ky x #frame x #coil)
+% Kdata:         initial estimiation of k-space data                                         (tensor: #kx x #ky x #frame x #coil)
+% Null_learned:  learned/ extracted null space                                               (matrix: prod(Kernek_size) x (prod(Kernek_size) -r))
+% Kernel_size:   kernel size                                                                 (vector: 1 x 4)
+% Rank:          rank                                                                        (scaler)
+% Proj_dim:      projected nullspace dimension                                               (scaler)
+% Denoiser:      denoising subroutine                                                        (function handle)
+% Iter_1:        number of iterations                                                        (scaler)
+% Iter_2:        number of iterations for gradient descent + exact line search               (scaler)
+% GD_option:     choices to calculate graident, 1: no approximation 2. circular padding      (scaler)
+% ELS_frequency: frequency of updating step size using exact line search                     (scaler)
 % Output ------------------------------------------------------------------
-% Kdata:         estimation of k-space data                                      (tensor: #kx x #ky x #frame x #coil)
-% Null:          output null space                                               (tensor: prod(Kernek_size) x (prod(Kernek_size) -r))
+% Kdata:         estimation of k-space data                                                  (tensor: #kx x #ky x #frame x #coil)
+% Null:          output null space                                                           (tensor: prod(Kernek_size) x (prod(Kernek_size) -r))
 
 Kdata_cp = CP(Kdata,Kernel_size);
 Mask_cp = CP(Mask,Kernel_size);
+Data_size = size(Kdata);
 Data_cp_size = size(Kdata_cp);         % kx ky time coil dimensions of circular padded k-space
 Diff_size = Data_cp_size - Kernel_size;% difference between kx ky coil dimensions of circular padded k-space and kernel
 
 for i = 1:Iter_1
     disp(['Iteration ',num2str(i,'%04d')])
     %% Nullspace Extraction
-    if isempty(Null_learned)
+    if isempty(Null_learned)        
         % Build Grammian
-        switch 2
+        switch 2            
             case 1 % build Grammian from convolution operator: memory efficient but relative slow in Matalb
                 Gram = zeros(prod(Kernel_size), 'like', Kdata_ob);
                 for l = 1:prod(Kernel_size)
@@ -44,6 +46,18 @@ for i = 1:Iter_1
                     Kdata_cp_part(end:-1:1) = Kdata_cp_part;                                       % flip in all dimension
                     Gram(:,l) = reshape(convn(conj(Kdata_cp), Kdata_cp_part,'valid'), [],1);
                 end
+                % Eigendecomposition or random svd on projected Grammian
+                switch 2
+                    case 1 % direct eigendecomposition
+                        [V,Lam] = eig(Gram);
+                        [~,ind] = sort(real(diag(Lam)),'ascend');                                  % enforce real due to possible unexpected round-off error for case 1 above
+                        V = V(:,ind);
+                        Null = V(:,1:prod(Kernel_size)-Rank);
+                    case 2
+                        V = rsvd(Gram,Rank);
+                        Null = null(V');
+                end
+                
             case 2 % build Grammian from explicit matrix: memory inefficient but relative fast in Matalb
                 A = zeros(prod(Data_cp_size-Kernel_size+1 ), prod(Kernel_size), 'like', Kdata_ob );
                 for l = 1:prod(Kernel_size)
@@ -51,13 +65,22 @@ for i = 1:Iter_1
                     A(:,l) = reshape(Kdata_cp(coord_1+(0:Diff_size(1)), coord_2+(0:Diff_size(2)),...
                         coord_3+(0:Diff_size(3)), coord_4+(0:Diff_size(4))), [],1);
                 end
-                Gram = A'*A;
-        end
-        % Eigendecomposition
-        [V,Lam] = eig(Gram);
-        [~,ind] = sort(real(diag(Lam)),'ascend');                                                  % enforce real due to possible unexpected round-off error for case 1 above
-        V = V(:,ind);
-        Null = V(:,1:prod(Kernel_size)-Rank);
+                switch 3
+                    case 1 % direct eigendecomposition
+                        Gram = A'*A;
+                        [V,Lam] = eig(Gram);
+                        [~,ind] = sort(real(diag(Lam)),'ascend');                                  % enforce real due to possible unexpected round-off error for case 1 above
+                        V = V(:,ind);
+                        Null = V(:,1:prod(Kernel_size)-Rank);
+                    case 2 % random svd of projected Grammian
+                        Gram = A'*A;
+                        V = rsvd(Gram,Rank);
+                        Null = null(V');
+                    case 3 % random svd of the convolutoinal matrix
+                        V = rsvd(A,Rank);
+                        Null = null(V');
+                end                
+        end        
     else
         Null = Null_learned;
     end
@@ -66,31 +89,62 @@ for i = 1:Iter_1
     if Proj_dim == prod(Kernel_size)-Rank                                                          % Proj_dim = nullity then no random projection
         Null_tilde = Null;
     else
-        Null_tilde = Null*randn(size(Null,2),Proj_dim)/sqrt(size(Null,2));                         % project to Proj_dim dimension
+        Null_tilde = Null*randn(size(Null,2),Proj_dim,'single')/sqrt(size(Null,2));                % project to Proj_dim dimension
     end
     F = reshape(flip(Null_tilde,1),[Kernel_size,Proj_dim]);                                        % flip and reshape to filters
     F_Hermitian = reshape(conj(Null_tilde),[Kernel_size,Proj_dim]);                                % Hermitian of filters
     
     %% Solving Least-Squares Subproblem
     for j = 1:Iter_2
-        % Calculate gradient
-        GD_cp = zeros(Data_cp_size,'like',Kdata_cp); % gradient for the circular padded k-space        
-        for k = 1:Proj_dim            
-            GD_cp = GD_cp + 2*convn(convn(Kdata_cp,F(:,:,:,:,k),'valid'),F_Hermitian(:,:,:,:,k)).*(~Mask_cp);            
+        % Calulate gradient
+        switch GD_option
+            case 1 % calculate gradient wihout approximation
+                GD_cp = zeros(Data_cp_size,'like',Kdata_cp); % gradient for the circular padded k-space
+                for k = 1:Proj_dim
+                    GD_cp = GD_cp + convn(convn(Kdata_cp,F(:,:,:,:,k),'valid'),F_Hermitian(:,:,:,:,k));
+                end
+                GD_cp = 2*GD_cp.*(~Mask_cp);
+                GD = GD_cp(Kernel_size(1):end, Kernel_size(2):end, Kernel_size(3):end, :);                                            % gradient for the k-space
+                GD(end-Kernel_size(1)+2:end,end-Kernel_size(2)+2:end,end-Kernel_size(3)+2:end,:) = GD(end-Kernel_size(1)+2:end,end-Kernel_size(2)+2:end,end-Kernel_size(3)+2:end,:) + GD_cp(1:Kernel_size(1)-1,1:Kernel_size(2)-1,1:Kernel_size(3)-1,:);
+                GD_cp = CP(GD,Kernel_size);                                                                                           % circular pad the gradient since padded k-space share the same gradient
+            case 2 % calculate gradient with approximation using circular padding and FFT
+                if j == 1                                                                                                             % combined filter is calculated only one time insider least-squares subproblem, the code below avoids for loop in matlab but slightly hard to udnerstand
+                    Combined_filters = flip(...
+                        squeeze(...
+                        sum(...
+                        ifft3(...
+                        fft3(permute(F,[1,2,3,6,5,4]),2*Kernel_size(1)-1,2*Kernel_size(2)-1,2*Kernel_size(3)-1).*...
+                        fft3(F_Hermitian             ,2*Kernel_size(1)-1,2*Kernel_size(2)-1,2*Kernel_size(3)-1)...
+                        )...
+                        ,5)...
+                        )...
+                        ,5);
+                end
+                
+                % Equivalent, and intutive code for gradient calculation is below
+                %                 GD = zeros(Data_size, 'single');
+                %                 for c = 1:Data_size(end)
+                %                     GD = GD + ifft3(fft3(Kdata(:,:,:,c)).*fft3(Combined_filters(:,:,:,:,c),Data_size(1),Data_size(2),Data_size(3)));
+                %                 end
+
+                GD = sum(ifft3(fft3(Combined_filters, Data_size(1), Data_size(2), Data_size(3)).*permute(fft3(Kdata),[1,2,3,5,4])),5);% gradient
+                GD = circshift(circshift(circshift(GD,1-Kernel_size(1),1),1-Kernel_size(2),2),1-Kernel_size(3),3);
+                GD = 2*GD.*(~Mask);
+                GD_cp = CP(GD,Kernel_size);
         end
-        
-        GD = GD_cp(:,:,Kernel_size(3):end,:);                                                     % gradient for the k-space
-        GD(:,:,end-Kernel_size(3)+2:end,:) = GD_cp(:,:,end-Kernel_size(3)+2:end,:) + GD_cp(:,:,1:Kernel_size(3)-1,:);
-        GD_cp = CP(GD,Kernel_size);                                                               % circular pad the gradient since padded k-space share the same gradient
-        
         % ELS: Exact Line Search
-        if mod((i-1)*Iter_2+j-1,ELS_frequency) == 0                                               % whether update step size via ELS
-            Denominator = 0;                                                                      % For ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
-            for k = 1:Proj_dim
-                Denominator = Denominator+ 2*sum(abs(convn(GD_cp,F(:,:,:,:,k),'valid')).^2,'all');% For ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
+        if mod((i-1)*Iter_2+j-1,ELS_frequency) == 0                                                                                   % whether update step size via ELS
+            Denominator = 0;                                                                                                          % For ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
+            switch 1
+                case 1 % direct convolution
+                    for k = 1:Proj_dim
+                        Denominator = Denominator+ 2*sum(abs(convn(GD_cp,F(:,:,:,:,k),'valid')).^2,'all');                            % For ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
+                    end
+                case 2 % FFT basded convolution better for larger kernels
+                    Denominator = 2*sum(abs(ifft3(fft3(GD).*fft3(F,Data_size(1), Data_size(2), Data_size(3)))).^2, 'all');
             end
             Numerator = sum(abs(GD).^2,'all');
-            Step_ELS = -Numerator/Denominator;                                                    % optimal step size
+            Step_ELS = -Numerator/Denominator;                                                                                        % optimal step size
         end
         Kdata = Kdata + Step_ELS*GD;
         Kdata_cp = CP(Kdata,Kernel_size);
@@ -100,11 +154,37 @@ for i = 1:Iter_1
             Kdata = Denoiser(Kdata);     % denoise
             Kdata(Mask) = Kdata_ob(Mask);% enforce data consistency
         end
-    end
+    end    
 end
 end
 
 %% Function
-function Y_cp = CP(Y,m)                                                                          % circular padding along time dimension (for circular convolution along time dimension)
-Y_cp = padarray(Y,[0 0 m(3)-1 0],'circular','pre');
+function Y_cp = CP(Y,m)                                                                                                               % circular padding along kx ky time dimension (for circular convolution)
+Y_cp = padarray(Y,[m(1)-1 m(2)-1 m(3)-1 0],'circular','pre');
+end
+
+function V = rsvd(A,Rank)                                                                                                             % use random projection to approximate the row space of matrix A with approximate rank K.
+B = A*randn(size(A,2),2*Rank);
+[Q,~] = qr(B,0);
+B = Q'*A;
+[~,~,V] = svd(B,'econ');
+V = V(:,1:Rank);
+end
+
+function K = fft3(I,l1,l2,l3)                                                                                                         % calculate fft along the first three dimension
+switch nargin
+    case 1
+        K = fft(fft(fft(I,[],1),[],2),[],3);
+    case 4
+        K = fft(fft(fft(I,l1,1),l2,2),l3,3);
+end
+end
+
+function I = ifft3(K,l1,l2,l3)                                                                                                        % calculate ifft along the first three dimension
+switch nargin
+    case 1
+        I = ifft(ifft(ifft(K,[],1),[],2),[],3);
+    case 4
+        I = ifft(ifft(ifft(K,l1,1),l2,2),l3,3);
+end
 end
