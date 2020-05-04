@@ -7,7 +7,7 @@ addpath('2D_Data');
 load('file_brain_AXT2_200_2000019.mat')                                % k-space the file is downloaded from NYU fastMRI, Ref:https://arxiv.org/abs/1811.08839.
 load('S1R3.mat');                                                      % sampling pattern: can also load S1R5, S2R3, S2R5
 
-Center = 1/6;                                                          % [tunable] occupies Center kx by Center ky: smaller value, faster reconstruction
+Center = 1/6;                                                          % [tunable] occupies Center kx by Center ky: smaller value, faster reconstruction.
 [Nx,Ny,Nc] = size(Kdata);                                              % kx ky coil dimensions
 X_keep = round(Nx*(1/2-Center/2)): round(Nx*(1/2+Center/2)-1);         % x coordiantes of center region
 Y_keep = round(Ny*(1/2-Center/2)): round(Ny*(1/2+Center/2)-1);         % y coordinates of center region
@@ -24,8 +24,8 @@ Proj_dim = 2*Nc;                                                       % [tunabl
 Denoiser = @(I,Step_size)SWT_denoiser(I,Step_size, 1.044e-9, 1.044e-7);% [tunable] denoising subroutine (optional), no denoiser G = [], paired denoiser -> better SNR, lower speed
 Iter_1 = 100;                                                          % [tunable] number of iterations: S1R3:100, S1R5:400, S2R3:160, S2R5:1200
 Iter_2 = 3;                                                            % [tunable] number of iterations for gradient descent + exact line search
-GD_option = 3;                                                         % [tunable] options of calculating graident, 1: without padding -> accurate & slow, 2. with zero padding approximation -> less accurate & fast 3. with circular padding approximation using FFT -> less accurate and fast with large kernels
-ELS_frequency = 6;                                                     % [tunable] Every ELS_Update_Frequency steps of gradient descent, the step size is updated via ELS. Higher frequency -> more computation & less accurate step size, too large -> diverge
+GD_option = 2;                                                         % [tunable] options of calculating graident, 1: without padding -> accurate & slow, 2. with circular padding approximation using FFT -> less accurate and fast with large kernels 3. with zero padding approximation -> less accurate & fast. To reproduce the results in Ref [2], GD_option = 1 
+ELS_frequency = 6;                                                     % [tunable] Every ELS_Update_Frequency steps of gradient descent, the step size is updated via ELS. Higher frequency -> more computation & less accurate step size, too large -> diverge. To reproduce the results in Ref [2], ELS_frequency = 1
 
 % Warm start using center of k-space
 disp('Process the center k-space......');tic
@@ -69,3 +69,6 @@ end
 function snr = SNR(X,Ref)                                              % calculate the SNR
 snr = -20*log10(norm(X(:)-Ref(:))/norm(Ref(:)));
 end
+
+% [1] Zhao, Shen, et al. "Convolutional Framework for Accelerated Magnetic Resonance Imaging." arXiv preprint arXiv:2002.03225 (2020).
+% [2] Zhao, Shen, et al. "High-dimensional fast convolutional framework for calibrationless MRI." arXiv preprint arXiv:2004.08962 (2020).
