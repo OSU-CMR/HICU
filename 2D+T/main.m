@@ -31,12 +31,13 @@ Proj_dim = 4*Nc;                                                                
 Denoiser = [];                                                                  % [tunable] denoising subroutine (optional), no denoiser G = []
 Iter_1 = 100;                                                                   % [tunable] number of iterations: 100 works for R6 and R8
 Iter_2 = 3;                                                                     % [tunable] number of iterations for gradient descent + exact line search
+GD_option = 2;                                                                  % [tunable] options of calculating graident, 1: without padding -> accurate & slow, 2. with circular padding approximation using FFT -> less accurate and fast with large kernels
 ELS_frequency = 6;                                                              % [tunable] Every ELS_Update_frequency steps of gradient descent, the step size is updated via ELS. Higher frequency -> more computation & less accurate step size, too large -> diverge
 
 % Warm start using center of k-space
 disp('Process the center k-space......');tic
-[Kdata_c_hat, Null_c] = HICUsubroutine_2D_T(Kdata_ob_c, Mask_c, Kdata_c_hat, [], Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, ELS_frequency);
-disp(['HICU reconstructed center k-space SNR (dB) is ', num2str(SNR(Kdata_c_hat,Kdata_c)),])
+[Kdata_c_hat, Null_c] = HICUsubroutine_2D_T(Kdata_ob_c, Mask_c, Kdata_c_hat, [], Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency);
+disp(['HICU reconstructed center k-space SNR (dB) is ', num2str(SNR(Kdata_c_hat,Kdata_c))])
 
 % Form k-space estimation by replacing center region
 Kdata_hat = Kdata_ob;
@@ -47,7 +48,7 @@ Iter_1 = 64;                                                                    
 Iter_2 = 1;                                                                     % [tunable] number of iterations for gradient descent + exact line search
 
 disp('Process the full k-space......')
-[Kdata_hat, Null] = HICUsubroutine_2D_T(Kdata_ob, Mask, Kdata_hat, Null_c, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, ELS_frequency);
+[Kdata_hat, Null] = HICUsubroutine_2D_T(Kdata_ob, Mask, Kdata_hat, Null_c, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency);
 disp(['HICU reconstructed k-space SNR (dB) is ', num2str(SNR(Kdata_hat,Kdata))])
 disp(['HICU reconstruction time (s) is: ' num2str(toc)]);
 
