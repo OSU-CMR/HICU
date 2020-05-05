@@ -50,16 +50,11 @@ for i = 1:Iter_1
                 Gram = A'*A;
         end
         % Eigendecomposition
-        switch 2
-            case 1 % direct eigendecomposition
-                [V,Lam] = eig(Gram);
-                [~,ind] = sort(real(diag(Lam)),'ascend');                                                              % enforce real due to possible unexpected round-off error for case 1 above
-                V = V(:,ind);
-                Null = V(:,1:prod(Kernel_size)-Rank);
-            case 2 % random svd
-                V = rsvd(Gram,Rank);
-                Null = null(V');
-        end
+        [V,Lam] = eig(Gram);
+        [~,ind] = sort(real(diag(Lam)),'ascend');                                                                      % enforce real due to possible unexpected round-off error for case 1 above
+        V = V(:,ind);
+        Null = V(:,1:prod(Kernel_size)-Rank);
+        
     else
         Null = Null_learned;
     end
@@ -88,7 +83,7 @@ for i = 1:Iter_1
                     Combined_filters = flip(squeeze(sum(ifft2(fft2(permute(F,[1,2,5,4,3]),2*Kernel_size(1)-1,2*Kernel_size(2)-1).*fft2(F_Hermitian,2*Kernel_size(1)-1,2*Kernel_size(2)-1)),4)),4);
                 end
                 GD = sum(ifft2(fft2(Combined_filters,Data_size(1), Data_size(2)).*permute(fft2(Kdata),[1,2,4,3])),4);  % gradient
-                GD = circshift(circshift(GD,1-Kernel_size(1),1),1-Kernel_size(2),2);
+                GD = circshift(GD, [1-Kernel_size(1),1-Kernel_size(2),0]);
                 GD = 2*GD.*(~Mask);
             case 3 % calculate gradient with approximation using zero padding
                 if j == 1                                                                                              % combined filter is calculated only one time insider least-squares subproblem, the code below avoids for loop in matlab but slightly hard to udnerstand
@@ -98,7 +93,7 @@ for i = 1:Iter_1
                 for c = 1:Kernel_size(end)                                                                             % index of coil
                     GD = GD+convn(Combined_filters(:,:,:,c),Kdata(:,:,c));
                 end
-                GD = 2*GD(Kernel_size(1):end-Kernel_size(1)+1, Kernel_size(2):end-Kernel_size(2)+1,:).*(~Mask);        % omit the result outside the k-space boundary                
+                GD = 2*GD(Kernel_size(1):end-Kernel_size(1)+1, Kernel_size(2):end-Kernel_size(2)+1,:).*(~Mask);        % omit the result outside the k-space boundary
         end
         
         % ELS: Exact Line Search
@@ -119,13 +114,4 @@ for i = 1:Iter_1
         end
     end
 end
-end
-
-%%Function
-function V = rsvd(A,Rank)                                                                                              % use random projection to approximate the row space of matrix A with approximate rank K.
-B = A*randn(size(A,2),2*Rank,'single');
-[Q,~] = qr(B,0);
-B = Q'*A;
-[~,~,V] = svd(B,'econ');
-V = V(:,1:Rank);
 end
