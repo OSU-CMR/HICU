@@ -36,7 +36,7 @@ ELS_frequency = 6;                                                              
 
 % Warm start using center of k-space
 disp('Process the center k-space......');tic
-[Kdata_c_hat, Null_c] = Public_HICUsubroutine_2D_T(Kdata_ob_c, Mask_c, Kdata_c_hat, [], Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency);
+[Kdata_c_hat, Null_c] = HICUsubroutine_2D_T(Kdata_ob_c, Mask_c, Kdata_c_hat, [], Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency);
 disp(['HICU reconstructed center k-space SNR (dB) is ', num2str(SNR(Kdata_c_hat,Kdata_c))])
 
 % Form k-space estimation by replacing center region
