@@ -12,6 +12,8 @@ function Kdata = SWT_denoiser(Kdata,Step_size,Lam_1,Lam_2)
 % Output ------------------------------------------------------------------
 % Kdata:     k-space data                                   (tensor: #kx x #ky x #coil)
 
+persistent Basis_fft2                                                                                                                     % the common fft2 of the basis for efficiency
+
 switch 1
     case 1 % direct convolution to calculate the soft-thresholding, lower flops but sequential, slower when wavelet basis is large
         I = K2I(Kdata);
@@ -26,20 +28,23 @@ switch 1
         I_HH = convn(I_cp,[1 -1; -1  1]/4,'valid');
         
         % Soft threshold each band
-        I_LL = max(abs(I_LL)-Lam_1*abs(Step_size),0).*exp(1j*angle(I_LL));
-        I_LH = max(abs(I_LH)-Lam_2*abs(Step_size),0).*exp(1j*angle(I_LH));
-        I_HL = max(abs(I_HL)-Lam_2*abs(Step_size),0).*exp(1j*angle(I_HL));
-        I_HH = max(abs(I_HH)-Lam_2*abs(Step_size),0).*exp(1j*angle(I_HH));
+        I_LL = max(abs(I_LL)-Lam_1*abs(Step_size),0).*sign(I_LL);
+        I_LH = max(abs(I_LH)-Lam_2*abs(Step_size),0).*sign(I_LH);
+        I_HL = max(abs(I_HL)-Lam_2*abs(Step_size),0).*sign(I_HL);
+        I_HH = max(abs(I_HH)-Lam_2*abs(Step_size),0).*sign(I_HH);
         
         I = I_LL + I_LH + I_HL + I_HH;
         I = I*c;
         
-        Kdata = I2K(I);                                                                                                                   % back to  k-space        
-    case 2 % FFT based convolution to calculate the soft thersholding, highly vectorized, speed is slower than direct convolution but does not change when wavelet baisis is large                      
+        Kdata = I2K(I);                                                                                                                   % back to k-space        
+    case 2 % FFT based convolution to calculate the soft thersholding, highly vectorized, speed is slower than direct convolution but does not change when wavelet baisis is large                              
+        if isempty(Basis_fft2)
+            Basis_fft2 = fft2(cat(4,[1 1; 1  1],[1 1; -1 -1],[1 -1; 1 -1],[1 -1; -1 1])/4,size(Kdata,1),size(Kdata,2));
+        end
         c = max(abs(Kdata),[],'all');                                                                                                     % the largest absolute value in k-space, for normalizzation        
-        I_bands = ifft2(fft2(K2I(Kdata)).*fft2(cat(4,[1 1; 1  1],[1 1; -1 -1],[1 -1; 1 -1],[1 -1; -1 1])/4,size(Kdata,1),size(Kdata,2))); % generate stationary wavelet bands LL LH HL HH                
-        I_bands = max(abs(I_bands)-reshape([Lam_1, Lam_2, Lam_2, Lam_2]*abs(Step_size)*c,1,1,1,4), 0).*exp(1j*angle(I_bands));            % soft threshold each band
-        Kdata = I2K(sum(I_bands,4)); % back to  k-space
+        I_bands = ifft2(fft2(K2I(Kdata)).* Basis_fft2); % generate stationary wavelet bands LL LH HL HH                
+        I_bands = max(abs(I_bands)-reshape([Lam_1, Lam_2, Lam_2, Lam_2]*abs(Step_size)*c,1,1,1,4), 0).*sign(I_bands);                     % soft threshold each band
+        Kdata = I2K(sum(I_bands,4));                                                                                                      % back to k-space
 end
 end
 
