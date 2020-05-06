@@ -4,8 +4,8 @@ clc
 
 %% Load Data
 addpath('2D+T_Data');
-load('Kdata.mat');% k-space
-load('R6.mat');   % sampling pattern: can also load R8
+load('Kdata.mat');                                                              % k-space
+load('R6.mat');                                                                 % sampling pattern: can also load R8
 
 Center = 1/4;                                                                   % [tunable] occupies Center kx by Center ky: smaller value, faster reconstruction
 [Nx,Ny,Nt,Nc] = size(Kdata);                                                    % kx ky time coil dimensions
@@ -30,13 +30,13 @@ Rank = 130;                                                                     
 Proj_dim = 4*Nc;                                                                % [tunable] projected nullspace dimension: Nc~4*Nc empirically balances between SNR and speed for 2D+T
 Denoiser = [];                                                                  % [tunable] denoising subroutine (optional), no denoiser G = []
 Iter_1 = 100;                                                                   % [tunable] number of iterations: 100 works for R6 and R8
-Iter_2 = 3;                                                                     % [tunable] number of iterations for gradient descent + exact line search
-GD_option = 2;                                                                  % [tunable] options of calculating graident, 1: without padding -> accurate & slow, 2. with circular padding approximation using FFT -> less accurate and fast with large kernels
-ELS_frequency = 6;                                                              % [tunable] Every ELS_Update_frequency steps of gradient descent, the step size is updated via ELS. Higher frequency -> more computation & less accurate step size, too large -> diverge
+Iter_2 = 3;                                                                     % [tunable] number of iterations for gradient descent (GD) + exact line search (ELS)
+GD_option = 2;                                                                  % [tunable] options of calculating Grammian and GD, 1: without padding -> accurate & slow, 2. with circular padding approximation applied to Grammain and GD calculation using FFT -> less accurate and fast with large kernels. To reproduce the results in Ref [2], GD_option = 1
+ELS_frequency = 6;                                                              % [tunable] Every ELS_Update_frequency steps of gradient descent, the step size is updated via ELS. Higher frequency -> more computation & less accurate step size, too large -> diverge. To reproduce the results in Ref [2], ELS_frequency = 1.
 
 % Warm start using center of k-space
 disp('Process the center k-space......');tic
-[Kdata_c_hat, Null_c] = HICUsubroutine_2D_T(Kdata_ob_c, Mask_c, Kdata_c_hat, [], Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency);
+[Kdata_c_hat, Null_c] = Public_HICUsubroutine_2D_T(Kdata_ob_c, Mask_c, Kdata_c_hat, [], Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency);
 disp(['HICU reconstructed center k-space SNR (dB) is ', num2str(SNR(Kdata_c_hat,Kdata_c))])
 
 % Form k-space estimation by replacing center region
@@ -45,7 +45,7 @@ Kdata_hat(X_keep, Y_keep,:,:) = Kdata_c_hat;
 
 % Process on full k-space array
 Iter_1 = 64;                                                                    % [tunable] number of iterations
-Iter_2 = 1;                                                                     % [tunable] number of iterations for gradient descent + exact line search
+Iter_2 = 1;                                                                     % [tunable] number of iterations for gradient descent + exact line search                                                             % [tunable] options of calculating graident, 1: without padding -> accurate & slow, 2. with circular padding approximation using FFT -> less accurate and fast with large kernels. To reproduce the results in Ref [2], GD_option = 1
 
 disp('Process the full k-space......')
 [Kdata_hat, Null] = HICUsubroutine_2D_T(Kdata_ob, Mask, Kdata_hat, Null_c, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency);
@@ -76,3 +76,6 @@ end
 function snr = SNR(x,ref)                                                       % calculate the SNR
 snr = -20*log10(norm(x(:)-ref(:))/norm(ref(:)));
 end
+
+% [1] Zhao, Shen, et al. "Convolutional Framework for Accelerated Magnetic Resonance Imaging." arXiv preprint arXiv:2002.03225 (2020).
+% [2] Zhao, Shen, et al. "High-dimensional fast convolutional framework for calibrationless MRI." arXiv preprint arXiv:2004.08962 (2020).
