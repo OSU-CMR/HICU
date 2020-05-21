@@ -85,44 +85,39 @@ for i = 1:Iter_1
                     GD_cp = GD_cp + convn(convn(Kdata_cp,F(:,:,:,:,k),'valid'),F_Hermitian(:,:,:,:,k));
                 end
                 GD_cp = 2*GD_cp.*(~Mask_cp);
-                GD = GD_cp(:, :, Kernel_size(3):end, :);                                                                              % gradient for the k-space
+                GD = GD_cp(:, :, Kernel_size(3):end, :);                                                                                % gradient for the k-space
                 GD(:,:,end-Kernel_size(3)+2:end,:) = GD(:,:,end-Kernel_size(3)+2:end,:) + GD_cp(:,:,1:Kernel_size(3)-1,:);
                 GD_cp = CP(GD,Kernel_size, GD_option);
                 
             case 2 % calculate gradient with approximation using circular padding and FFT
-                if j == 1                                                                                                             % combined filter is calculated only one time insider least-squares subproblem, the code below avoids for loop in matlab but slightly hard to udnerstand
-                    Combined_filters = flip(squeeze(sum(ifft3(...
+                if j == 1                                                                                                               % combined filter is calculated only one time insider least-squares subproblem, the code below avoids for loop in matlab but slightly hard to udnerstand
+                    Combined_filters = flip(squeeze(ifft3(sum(...
                         fft3(permute(F,[1,2,3,6,5,4]),2*Kernel_size(1)-1,2*Kernel_size(2)-1,2*Kernel_size(3)-1).*...
                         fft3(F_Hermitian             ,2*Kernel_size(1)-1,2*Kernel_size(2)-1,2*Kernel_size(3)-1)...
-                        ),5)),5);
+                        ,5))),5);                                                                                                       % ifft3() and sum() are interchangable, but sum() first is more efficient
                 end
-                GD = sum(ifft3(fft3(Combined_filters, Data_size(1), Data_size(2), Data_size(3)).*permute(fft3(Kdata),[1,2,3,5,4])),5);% gradient
+                GD = ifft3(sum(fft3(Combined_filters, Data_size(1), Data_size(2), Data_size(3)).*permute(fft3(Kdata),[1,2,3,5,4]),5));  % gradient ifft3() and sum() are interchangable, but sum() first is more efficient
                 GD = circshift(GD,[1-Kernel_size(1),1-Kernel_size(2),1-Kernel_size(3) 0]);
                 GD = 2*GD.*(~Mask);
                 GD_cp = CP(GD,Kernel_size,GD_option);
         end
         
         % ELS: Exact Line Search
-        if mod((i-1)*Iter_2+j-1,ELS_frequency) == 0                                                                                   % whether update step size via ELS
-            Denominator = 0;                                                                                                          % For ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
-            switch 1
-                case 1 % direct convolution
-                    for k = 1:Proj_dim
-                        Denominator = Denominator+ 2*sum(abs(convn(GD_cp,F(:,:,:,:,k),'valid')).^2,'all');                            % For ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
-                    end
-                case 2 % FFT basded convolution better for larger kernels
-                    Denominator = 2*sum(abs(ifft3(fft3(GD).*fft3(F,Data_size(1), Data_size(2), Data_size(3)))).^2, 'all');
+        if mod((i-1)*Iter_2+j-1,ELS_frequency) == 0                                                                                     % whether update step size via ELS
+            Denominator = 0;                                                                                                            % For ||Ax-b||^2, numeraotr should be \nabla f(x)^H \nabla f(x)
+            for k = 1:Proj_dim
+                Denominator = Denominator+ 2*sum(abs(convn(GD_cp,F(:,:,:,:,k),'valid')).^2,'all');                              % For ||Ax-b||^2, denominator should be 2\nabla f(x)^H A^H A \nabla f(x)
             end
             Numerator = sum(abs(GD).^2,'all');
-            Step_ELS = -Numerator/Denominator;                                                                                        % optimal step size
+            Step_ELS = -Numerator/Denominator;                                                                                          % optimal step size
         end
         Kdata = Kdata + Step_ELS*GD;
         Kdata_cp = CP(Kdata,Kernel_size,GD_option);
         
         % Denoising (Denoiseing with GD+ELS is similar to proximal gradient descent)
         if ~isempty(Denoiser)
-            Kdata = Denoiser(Kdata, Step_ELS);                                                                                        % denoise
-            Kdata(Mask) = Kdata_ob(Mask);                                                                                             % enforce data consistency
+            Kdata = Denoiser(Kdata, Step_ELS);                                                                                          % denoise
+            Kdata(Mask) = Kdata_ob(Mask);                                                                                               % enforce data consistency
         end
     end
 end
