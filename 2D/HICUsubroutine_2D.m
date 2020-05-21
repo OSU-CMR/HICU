@@ -79,15 +79,15 @@ for i = 1:Iter_1
                 end
                 GD = 2*GD.*(~Mask);
             case 2 % calculate gradient with approximation using circular padding and FFT
-                if j == 1                                                                                              % combined filter is calculated only one time insider least-squares subproblem, the code below avoids for loop in matlab but slightly hard to udnerstand
-                    Combined_filters = flip(squeeze(sum(ifft2(fft2(permute(F,[1,2,5,4,3]),2*Kernel_size(1)-1,2*Kernel_size(2)-1).*fft2(F_Hermitian,2*Kernel_size(1)-1,2*Kernel_size(2)-1)),4)),4);
+                if j == 1                                                                                               % combined filter is calculated only one time insider least-squares subproblem, the code below avoids for loop in matlab but slightly hard to udnerstand
+                    Combined_filters = flip(squeeze(ifft2(sum(fft2(permute(F,[1,2,5,4,3]),2*Kernel_size(1)-1,2*Kernel_size(2)-1).*fft2(F_Hermitian,2*Kernel_size(1)-1,2*Kernel_size(2)-1),4))),4);% ifft2() and sum() are interchangable but sum() first is more efficient
                 end
                 GD = sum(ifft2(fft2(Combined_filters,Data_size(1), Data_size(2)).*permute(fft2(Kdata),[1,2,4,3])),4);  % gradient
                 GD = circshift(GD, [1-Kernel_size(1),1-Kernel_size(2),0]);
                 GD = 2*GD.*(~Mask);
             case 3 % calculate gradient with approximation using zero padding
-                if j == 1                                                                                              % combined filter is calculated only one time insider least-squares subproblem, the code below avoids for loop in matlab but slightly hard to udnerstand
-                    Combined_filters = flip(squeeze(sum(ifft2(fft2(permute(F,[1,2,5,4,3]),2*Kernel_size(1)-1,2*Kernel_size(2)-1).*fft2(F_Hermitian,2*Kernel_size(1)-1,2*Kernel_size(2)-1)),4)),4);
+                if j == 1                                                                                               % combined filter is calculated only one time insider least-squares subproblem, the code below avoids for loop in matlab but slightly hard to udnerstand
+                    Combined_filters = flip(squeeze(ifft2(sum(fft2(permute(F,[1,2,5,4,3]),2*Kernel_size(1)-1,2*Kernel_size(2)-1).*fft2(F_Hermitian,2*Kernel_size(1)-1,2*Kernel_size(2)-1),4))),4);% ifft2() and sum() are interchangable but sum() first is more efficient
                 end
                 GD = zeros(Data_size(1)+2*Kernel_size(1)-2, Data_size(2)+2*Kernel_size(2)-2,Data_size(3),'like',Kdata);% gradient
                 for c = 1:Kernel_size(end)                                                                             % index of coil
