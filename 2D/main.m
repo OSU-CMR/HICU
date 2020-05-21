@@ -24,8 +24,8 @@ Proj_dim = 2*Nc;                                                       % [tunabl
 Denoiser = @(I,Step_size)SWT_denoiser(I,Step_size, 1.044e-9, 1.044e-7);% [tunable] denoising subroutine (optional), no denoiser G = [], paired denoiser -> better SNR, lower speed
 Iter_1 = 100;                                                          % [tunable] number of iterations: S1R3:100, S1R5:400, S2R3:160, S2R5:1200
 Iter_2 = 3;                                                            % [tunable] number of iterations for gradient descent + exact line search
-GD_option = 3;                                                         % [tunable] options of calculating graident, 1: without padding -> accurate & slow, 2. with circular padding approximation using FFT -> less accurate and fast with large kernels 3. with zero padding approximation -> less accurate & fast. To reproduce the results in Ref [2], GD_option = 1 
-ELS_frequency = 6;                                                     % [tunable] Every ELS_Update_Frequency steps of gradient descent, the step size is updated via ELS. Higher frequency -> more computation & less accurate step size, too large -> diverge. To reproduce the results in Ref [2], ELS_frequency = 1
+GD_option = 2;                                                         % [tunable] options of calculating graident, 1: without padding -> accurate & slow, 2. with circular padding approximation using FFT -> less accurate and fast with large kernels 3. with zero padding approximation -> less accurate & fast. To reproduce the results in Ref [2], GD_option = 1. 
+ELS_frequency = 6;                                                     % [tunable] Every ELS_Update_Frequency steps of gradient descent, the step size is updated via ELS. Higher frequency -> more computation & less accurate step size, too large -> diverge. To reproduce the results in Ref [2], ELS_frequency = 1.
 
 % Warm start using center of k-space
 disp('Process the center k-space......');tic
@@ -41,6 +41,7 @@ Iter_1 = 50;                                                           % [tunabl
 Iter_2 = 1;                                                            % [tunable] number of iterations for gradient descent + exact line search
 
 disp('Process the full k-space......')
+clear SWT_denoiser                                                     % clear persistent variable inside the denoiser function
 [Kdata_hat, Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata_hat, Null_c, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency);
 disp(['HICU reconstructed k-space SNR (dB) is ', num2str(SNR(Kdata_hat,Kdata))])
 disp(['HICU reconstruction time (s) is: ' num2str(toc)]);
