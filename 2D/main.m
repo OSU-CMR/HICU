@@ -42,7 +42,7 @@ Iter_2 = 1;                                                            % [tunabl
 
 disp('Process the full k-space......')
 clear SWT_denoiser                                                     % clear persistent variable inside the denoiser function
-[Kdata_hat, Null] = HICUsubroutine_2D(Kdata_hat, Mask, Kdata_hat, Null_c, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency);
+[Kdata_hat, Null] = HICUsubroutine_2D(Kdata_ob, Mask, Kdata_hat, Null_c, Kernel_size, Rank, Proj_dim, Denoiser, Iter_1, Iter_2, GD_option, ELS_frequency);
 disp(['HICU reconstructed k-space SNR (dB) is ', num2str(SNR(Kdata_hat,Kdata))])
 disp(['HICU reconstruction time (s) is: ' num2str(toc)]);
 
