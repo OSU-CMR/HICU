@@ -1,0 +1,16 @@
+This is a short summary of the GE header file output
+...PSD name from inside PSD: 3DFSE
+...Magnet strength (in Gauss): 30000
+    The clinicalCoilName of the active coil: C-GE_HDx TR Knee PA
+...rhnframes yres: 320
+...rhfrsize xres: 320
+...rhnslices slices in a pass: 256
+...Display field of view - x (mm): 160
+...Display field of view - y (if different): 160
+...Variable bandwidth (kHz): 50
+...Pulse repetition time (usec): 1550000
+...Pulse echo time (usec): 25661
+...Echo train length for fast spin echo: 40
+...Slice thickness (mm): 0.6
+...Spacing between scans (mm): 0
+...Number of 3D slabs: 1

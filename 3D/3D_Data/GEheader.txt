@@ -1,0 +1,1971 @@
+This looks like a LittleEndian/22x/raw file...
+Total file size should be: 1683114268
+Header size: 149788
+
+...........RDB_HEADER_REC..................
+Offset to/size of RDB_HEADER_REC: 0, 4096
+...RDBM revision number: 20.006
+...Rdy pkt run number: 93184
+...Rdy pkt sequence number: 36
+...Rdy pkt run number in char: 93184
+...Scan date: 11/01/112
+...Scan time: 15:13
+...Logo, used to verify file: GE_MED_NMR
+...Data type 0=emp 1=nrec 2=rw: 1
+...unused: 0
+...rhdacqctrl bit mask: 0
+...rhrcctrl bit mask: 1
+...rhexecctrl bit mask: 11
+...scan type bit mask: 16
+...rhtype bit mask: 64
+...rhformat bit mask: 4
+...rhrecon proc-a-son recon: 0
+...rhdatacq proc-a-son dacq: 0
+...rhnpasses passes for a scan: 1
+...rhnpomp pomp group slices: 1
+...rhnslices slices in a pass: 256
+...rhnecho echoes of a slice: 1
+...rhnavs number of excitations: 1
+...rhnframes yres: 320
+...rhbline baselines: 0
+...rhhnover overscans: 0
+...rhfrsize xres: 320
+...rhptsize: 4
+...rhvquant 3D volumes: 1
+...RX cine heart phases: 1
+...RX cine TR in sec: 1
+...RX cine RR in sec: 1
+...rhinitpass allocate passes: 1
+...rhincrpass tps autopauses: 1
+...rhmethod 0=recon, 1=psd: 0
+...rhdaxres: 320
+...rhdayres: 321
+...rhrcxres: 512
+...rhrcyres: 512
+...rhimsize: 512
+...RC Z res (power of 2 > rhnslices): 0
+...rhrawsize: 1682964480
+...rhsspsave: 0
+...rhudasave: 0
+...rhfermr fermi radius: 160
+...rhfermw fermi width: 12.5
+...rhferme fermi eccentricity: 1
+...rhclipmin 4x IP limit: 0
+...rhclipmax 4x IP limit: 16383
+...rhdoffset default offset: 0
+...rhxoff scroll img in x: 0
+...rhyoff scroll img in y: 0
+...rhnwin hecho window width: 0
+...rhntran hecho trans width: 2
+...PS rhscalei: 0.00127302
+...PS rhscaleq: 0
+...RX rotation (0 90 180 270 deg): 0
+...RX transpose (0, n/y transpose): 0
+...rhblank zero image views: 0
+...rhslblank slice blank 3D: 2
+...RX Gradient coil (0=off 1=Schnk 2=Rmr): 0
+...rhddaover unused: 0
+...SARR bit mask 15 bits: 0
+...SARR feeder timing info: 0
+...SARR feeder timing info: 0
+...SARR control of feeder: 0
+...SARR df decimation ratio: 0
+...SARR which feeder algorithm: 0
+...rhdab0s rhdab0e start, stop receiver: 
+  recs[0]: 0, rece[0]: 7
+  recs[1]: 0, rece[1]: 0
+  recs[2]: 0, rece[2]: 0
+  recs[3]: 0, rece[3]: 0
+...rhuser0: 16
+...rhuser1: 0.520833
+...rhuser2: 0
+...rhuser3: 0
+...rhuser4: 0
+...rhuser5: 0
+...rhuser6: 0
+...rhuser7: 0
+...rhuser8: 0
+...rhuser9: 0
+...rhuser10: 0
+...rhuser11: 0
+...rhuser12: 0
+...rhuser13: 0
+...rhuser14: 0
+...rhuser15: 0
+...rhuser16: 0
+...rhuser17: 0
+...rhuser18: 0
+...rhuser19: 0
+...rhuser20: 0
+...rhuser21: 0
+...rhuser22: 0
+...rhuser23: 0
+...rhuser24: 0
+...rhuser25: 0
+...rhuser26: 0
+...rhuser27: 0
+...rhuser28: 0
+...rhuser29: 0
+...rhuser30: 0
+...rhuser31: 0
+...rhuser32: 0
+...rhuser33: 0
+...rhuser34: 0
+...rhuser35: 0
+...rhuser36: 0
+...rhuser37: 0
+...rhuser38: 0
+...rhuser39: 0
+...rhuser40: 0
+...rhuser41: 0
+...rhuser42: 0
+...rhuser43: 0
+...rhuser44: 0
+...rhuser45: 0
+...rhuser46: 0
+...rhuser47: 0
+...rhuser48: 0
+...rhvtype bit mask 31 bits: 0
+...RX x flow direction control: 0
+...RX x flow direction control: 0
+...RX x flow direction control: 0
+...RX x flow direction control: 0
+...RX y flow direction control: 0
+...RX y flow direction control: 0
+...RX y flow direction control: 0
+...RX y flow direction control: 0
+...RX z flow direction control: 0
+...RX z flow direction control: 0
+...RX z flow direction control: 0
+...RX z flow direction control: 0
+...RX weight for magnitude image 1: 0
+...RX weight for magnitude image 2: 0
+...RX weight for magnitude image 3: 0
+...RX weight for magnitude image 4: 0
+...RX velocity encoding cm/sec: 0
+...Specwidth filter width kHz: 0
+...Spectro CSI dims: 0
+...rhspecrescsix: 0
+...rhspecrescsiy: 0
+...rhspecrescsiz: 0
+...RX x CSI volume dimension: 0
+...RX y CSI volume dimension: 0
+...RX z CSI volume dimension: 0
+...RX x CSI volume center: 0
+...RX y CSI volume center: 0
+...RX z CSI volume center: 0
+...Number of dwell periods for spectro: 1
+...PS internal use only: 0
+...PS MPS R1 setting (1-7): 9
+...PS MPS R2 setting (1-30): 29
+...PS MPS transmit gain setting (0-200): 172
+...PS MPS center frequency Hz: 1277222110
+...PS APS R1 setting (1-7): 9
+...PS APS R2 setting (1-30): 29
+...PS APS transmit gain setting (0-200): 172
+...PS APS center frequency Hz: 1277222110
+...PS rational scaling: 0
+...PS unused: 0
+...PS noise test 0=16 1=32 bits: 135523253
+...PS prescan order logic: 2
+...PS bit mask 4 bits: 0
+...PS powerspec: 
+...PS filler1: 0
+...PS filler2: 0
+...Spectro full, half echo 0, 1: 0
+...Variable "im_size_y": 0
+...rhtype1 data_collect_type 1 bit mask: 327696
+...rhfreqscale freq_scale k-space step: 1
+...rhphasescale phase_scale k-space step: 1
+
+			8x fields
+...rhovl - overlaps for MOTSA: 0
+...Linear Corr. 0:off, 1:linear, 2:polynomial: 0
+...Fit number of points: 0
+...Fit order: 2
+...Linear phase correction average 0:off, 1:on: 0
+...Const Corr. 0:off, 1:ky spec., 2:polyfit(2/ilv), 3:polyfit(1/ilv): 0
+...Fit number of points: 2
+...Fit order: 2
+...External correction file 0:don't use, 1: use: 0
+...Phase correction coef. image 0:off, 1:linear & constant: 1
+...Interleaves to use for correction: 0=all, 1=only first: 0
+...Bestky view for fractional ky scan: 0
+...Phase correction research control: 0
+...Phase correction threshold points: 2
+...Phase correction beginning point to discard: 0
+...Phase correction middle point to discard: 0
+...Phase correction ending point to discard: 0
+...Threshold percentage: 15
+...Spacial best reference scan index: 0
+...Temporal best reference scan index: 0
+...Spare for phase correction: 1
+...Number of interleaves: 1
+...Ky traversal direction 0: top-down, 1:center-out: 0
+...Alternate read sign 0=no, 1=odd/even, 2=pairs: 0
+...Number of scan repetitions: 1
+...Reference scan 0: off 1: on: 1
+...Constant S term normalization factor: 0
+...Constant polyfit weighting factor: 0
+...Linear S term normalization factor: 0
+...Linear polyfit weighting factor: 0
+...Best ky location: 64
+...Control word for VRG filter: 0
+...Control word for VRGF final X resolution: 128
+...Control word for bandpass asymmetry: 0
+...Starting frequency: 0
+...Ending frequency: 0
+...Number of iterations used in homodyne processing: 0
+...0: Fast receiver off, 1 - 5: LPF settings: 0
+...Total number of frames for reference scan: 0
+...Number of frames per pass for a reference scan: 0
+...Total number of frames for an entire scan: 0
+...Number of frames per pass: 0
+...Spectro - user usage tag: 0
+...Spectro - fillmapMSW: 0
+...Spectro - fillmapLSW: 0
+...Adjust view indexes, if set so bestky view = 0: 1
+...First view within an echo group used for fit: 0
+...Last view within an echo group used for fit: 0
+...If = 1, force pts from other egrps to be used: 0
+...If = 2, force slope to be set to pclinslope: 1
+...If = 2, force slope to be set to pcconslope: 1
+...Value to set linear slope to if forced: 0
+...Value to set constant slope to if forced: 0
+...If 1,2,3,4, use that coil's results for all: 1
+...Variable view sharing mode: 0
+...Number of original images: 0
+...TR in microseconds: 0
+...Gender: male or female: 0
+...Slice ZIP factor: 0=off, 2, or 4: 1
+...Coefficient A for flow image 1: 0
+...Coefficient B for flow image 1: 0
+...Coefficient C for flow image 1: 0
+...Coefficient D for flow image 1: 0
+...Coefficient A for flow image 2: 0
+...Coefficient B for flow image 2: 0
+...Coefficient C for flow image 2: 0
+...Coefficient D for flow image 2: 0
+...Coefficient A for flow image 3: 0
+...Coefficient B for flow image 3: 0
+...Coefficient C for flow image 3: 0
+...Coefficient D for flow image 3: 0
+...System utility control variable: 0
+...EPI II diffusion control cv: 0
+...Arrhythmia rejection window (percentage): 10
+...Views per segment for FastCine: 8
+...N-coil recon map: 0
+...TE for first echo: 25000
+...TE for second and later echoes: 50000
+...BW for navigator frames: 4
+...Control flag for dfm (0=off, other=on): 0
+...Uncombined NEX at start of recon: 1
+...Max navigator frames in a pass: 1
+...Xres of navigator frames: 32
+...Point size of navigator frames: 2
+...Number of navigators per frame (tag table): 1
+...Control flag for dfm debug: 0
+...Threshold for navigator correction: 0
+...Bit settings controlling gridding: 0
+...B0 map enable and map size: 0
+...TE difference between b0 map arms: 0
+...Flag to apply motion compensation: 0
+...Variable density transition: 0
+...Variable density transition: 0
+...Max gradient amplitude: 0
+...Max slew rate: 0
+...RX scan field of view: 0
+...A to D sample time microsecs: 0
+...Change factor for variable density: 0
+...RX display field of view: 0
+
+			9x fields
+...Auto-Ncoil FOV: 160
+...MFO FIESTA recon control: 0
+...Auto post-processing opcode: 0
+...Auto-Ncoil select: 0
+...Auto-Ncoil limit: 45
+...Auto post processing options: 0
+...Gradient mode in Gemini project: 0
+...Asset: 0
+...Asset calibration threshold: 10000
+...Asset R: 1
+...Asset coil number: 125483
+...Asset phases: 1
+...Table position: 6.7908
+...Patient position: 1
+...Patient entry: 2
+...Landmark: 522.9
+
+			11x fields
+...For fat and water dual recon: 0
+...Num. passes stored in a multi-pass Pfile (0 means 1 pass): 0
+...Last slice number: 0
+...Slice reduction factor: 1
+...Asset slab wrap: 0
+...Coefficient for amount of phase correction: 0.5
+...Navigator echo correction: 0
+...Number of views of navigator echoes: 0
+...Number of navigator echoes for actual correction: 2
+...Start view for phase correction process: 1
+...End view for phase correction process: 1
+...Start shot for delta phase estimation in nav echoes: 1
+...End shot for delta phase estimation in nav echoes: 2
+...0 = modified Hanning, 1 = modified Tukey: 0
+...Degree of apodization; 0.0 = boxcar, 1.0=hanning: 0.1
+...Apodization at ends, 0.0 = max, 1.0 = boxcar: 0
+...Surface coil intensity correction: 1 if enabled: 0
+...Type of Clariview/name of filter: 0
+...Edge parameters for enhanced recon: 0
+...Smooth parameters for enhanced recon: 0
+...Focus parameters for enhanced recon: 0
+...Edge parameters for Clariview: 0
+...Smooth parameters for Clariview: 0
+...Focus parameters for Clariview: 0
+...Reduction parameter for SCIC: 0
+...Gauss parameter for SCIC: 0
+...Threshold parameter for SCIC: 0
+...Total Number of regions acquired by PSD: 0
+...Total Number of input regions for reordering: 0
+...Header field for smart prescan: 3
+...K-space blanking field, left: 32
+...K-space blanking field, right: 0
+...Multi-exciter acquire type information from CV: 0
+...Retrosective FSE phase correction control flag: 0
+...Added for retrospective FSE phase correction: 0
+
+			12x fields
+...1st view to use for dynamic EPI phase correction: 0
+...Last view to use for dynamic EPI phase correction: 0
+...Number of passes to skip for dynamic EPI phase correction: 0
+...Number of extra frames at top of k-space: 0
+...Number of extra frames at bottom of k-space: 0
+...Multiphase type 0 = interleaved, 1 = sequential: 0
+...Number of phases in a multiphase scan: 1
+...PURE flag from psd: 0
+...Rec scale factor ratio for calibration scan: 0
+...Byte offset to start of raw data (i.e size of POOL_HEADER): 149788
+...Byte offset to start of rdb_hdr_per_pass of POOL_HEADER: 4096
+...Byte offset to start of rdb_hdr_unlock_raw of POOL_HEADER: 20480
+...Byte offset to start of rdb_hdr_data_acq_tab of POOL_HEADER: 36864
+...Byte offset to start of rdb_hdr_nex_tab of POOL_HEADER: 135168
+...Byte offset to start of rdb_hdr_nex_abort_tab of POOL_HEADER: 137220
+...Byte offset to start of rdb_hdr_tool of POOL_HEADER: 139272
+...Byte offset to start of rdb_hdr_exam of POOL_HEADER: 142820
+...Byte offset to start of rdb_hdr_series of POOL_HEADER: 144780
+...Byte offset to start of rdb_hdr_image of POOL_HEADER: 147340
+...Byte offset to start of rdb_hdr_ps of POOL_HEADER: 141320
+...spare b: 0
+...New WW/WL algo enable/disable flag: 0
+...Image area %: 60
+...Histogram area top: 1
+...Histogram area bottom: 1
+...PURE noise reduction on=1/off=0: 1
+...PURE cfg file value, filter: 1
+...PURE cfg file value, fit_order: 2
+...PURE cfg file value, kernelsize_z: 3
+...PURE cfg file value, kernelsize_xy: 8
+...PURE cfg file value, weight_radius: 32
+...PURE cfg file value, intensity_scale: 2
+...PURE cfg file value, noise_threshold: 75
+...MART deblurring kernel, wienera: 0
+...MART deblurring kernel, wienerb: 0
+...MART deblurring kernel, wienert2: 0
+...MART deblurring kernel, wieneresp: 0
+...MART deblurring kernel, wiener: 0
+...MART deblurring kernel, flipfilter: 0
+...MART deblurring kernel, dbgrecon: 0
+...MART deblurring kernel, ech2skip: 0
+...Tricks type 0 = subtracted, 1 = unsubtracted: 0
+...LC fiesta phase: 0
+...LC fiesta: 0
+...Half echo raw data filter, herawflt: 0
+...Half echo raw data filter, herawflt_befnwin: 1
+...Half echo raw data filter, herawflt_befntran: 2
+...Half echo raw data filter, herawflt_befamp: 1
+...Half echo raw data filter, herawflt_hpfamp: 1
+...Half echo over-sampling: 0
+...PURE Correction threshold: 0
+
+			14x fields
+...SWIFT enable/disable flag: 0
+...Number of slabs to be used by TRICKS: 1
+...Number of coils to SWIFT between: 0
+...autoshim successful (1), autoshim failed/smart/OFF (0): 0
+...Number of phases for dynamic plan: 0
+
+			15x fields
+...MEDAL configuration bitmask: 0
+...MEDAL pixel stack size: 54
+...MEDAL in-phase, out-of-phase order: 0
+...MEDAL max adaptive region growing kernel size: 15
+...MEDAL min adaptive region growing kernel size: 8
+...MEDAL field smoothing kernel size: 8
+...MEDAL 2D region growing start slice: 0
+...MEDAL 2D region growing end slice: 10
+...IDEAL enable/disable flag: 0
+...IDEAL image options and control bits: 0
+...IDEAL delta frequency between two species : 17777.8
+...IDEAL bandwidth in Hz: 50
+...IDEAL first echo time in ms: 25.661
+...IDEAL echo spacing in ms : 0.01875
+...IDEAL "This will give the number of extra points": 0
+...Set to 1 for VIBRANT scans: 0
+...Set to 1 for torso scans (ASSET): 0
+...Set to 1 to use reapodized cal (ASSET): 0
+...Unique ID for kacq_yz.txt files: 1101151312
+...Set to 1 for local Tx phased arrays: 0
+...Used to scale 3D acqs to avoid over-range: 1
+...Scanner mode: 1 = Product, 2 = Research, 3 = Service: 2
+
+			20x fields
+...Deprecated rhrawsize: 0
+...Deprecated rhsspsave: 0
+...Deprecated rhudasave: 0
+...Channel translation table entry type: 
+   Entry 0:
+    The logicalCoilName of the active coil: RL-GE_HDx TR Knee PA
+    The clinicalCoilName of the active coil: C-GE_HDx TR Knee PA
+    A unique identifier based on coil parameters: 125483
+    The coilConnector to which the active coil is connected: 3940705508524033
+    Indicates whether this config is used for active scanning: 562954249437199
+    The channel translation map for this config: 3, 4
+...The variable rdb_hdr_psc_ta: 38
+...rhdiskacqctrl control: 0
+...Set to 1 for broadband exciter, 0 for narrowband exciter: 1
+
+			16x/22x fields
+...Total number of B values for Multi-B DWI: 1
+...Number of diffusion directions: 1: Single, 3: Three, 4: Tetrahedral: 1
+...Image-based NEX number for T2 (Smart nex): 1
+...NEX number for each b-value in multi-B eDWI: 
+    NEX = 1 (table entry 0)
+...Sum-of-squares recon (0), Complex channel combine recon (1): 0
+...Value of NEX table for unacquired encodes: 1
+
+...........RDB_DATA_ACQ_TAB..................
+Offset to/size of RDB_DATA_ACQ_TAB: 36864, 98304
+Slice 0, pass = 0, slice in pass = 1, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 94.7156, 103.744, -80
+  point 2: 94.7156, 103.744, 80
+  point 3: 94.7156, -56.256, -80
+Slice 1, pass = 0, slice in pass = 2, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 94.1156, 103.744, -80
+  point 2: 94.1156, 103.744, 80
+  point 3: 94.1156, -56.256, -80
+Slice 2, pass = 0, slice in pass = 3, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 93.5156, 103.744, -80
+  point 2: 93.5156, 103.744, 80
+  point 3: 93.5156, -56.256, -80
+Slice 3, pass = 0, slice in pass = 4, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 92.9156, 103.744, -80
+  point 2: 92.9156, 103.744, 80
+  point 3: 92.9156, -56.256, -80
+Slice 4, pass = 0, slice in pass = 5, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 92.3156, 103.744, -80
+  point 2: 92.3156, 103.744, 80
+  point 3: 92.3156, -56.256, -80
+Slice 5, pass = 0, slice in pass = 6, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 91.7156, 103.744, -80
+  point 2: 91.7156, 103.744, 80
+  point 3: 91.7156, -56.256, -80
+Slice 6, pass = 0, slice in pass = 7, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 91.1156, 103.744, -80
+  point 2: 91.1156, 103.744, 80
+  point 3: 91.1156, -56.256, -80
+Slice 7, pass = 0, slice in pass = 8, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 90.5156, 103.744, -80
+  point 2: 90.5156, 103.744, 80
+  point 3: 90.5156, -56.256, -80
+Slice 8, pass = 0, slice in pass = 9, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 89.9156, 103.744, -80
+  point 2: 89.9156, 103.744, 80
+  point 3: 89.9156, -56.256, -80
+Slice 9, pass = 0, slice in pass = 10, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 89.3156, 103.744, -80
+  point 2: 89.3156, 103.744, 80
+  point 3: 89.3156, -56.256, -80
+Slice 10, pass = 0, slice in pass = 11, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 88.7156, 103.744, -80
+  point 2: 88.7156, 103.744, 80
+  point 3: 88.7156, -56.256, -80
+Slice 11, pass = 0, slice in pass = 12, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 88.1156, 103.744, -80
+  point 2: 88.1156, 103.744, 80
+  point 3: 88.1156, -56.256, -80
+Slice 12, pass = 0, slice in pass = 13, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 87.5156, 103.744, -80
+  point 2: 87.5156, 103.744, 80
+  point 3: 87.5156, -56.256, -80
+Slice 13, pass = 0, slice in pass = 14, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 86.9156, 103.744, -80
+  point 2: 86.9156, 103.744, 80
+  point 3: 86.9156, -56.256, -80
+Slice 14, pass = 0, slice in pass = 15, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 86.3156, 103.744, -80
+  point 2: 86.3156, 103.744, 80
+  point 3: 86.3156, -56.256, -80
+Slice 15, pass = 0, slice in pass = 16, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 85.7156, 103.744, -80
+  point 2: 85.7156, 103.744, 80
+  point 3: 85.7156, -56.256, -80
+Slice 16, pass = 0, slice in pass = 17, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 85.1156, 103.744, -80
+  point 2: 85.1156, 103.744, 80
+  point 3: 85.1156, -56.256, -80
+Slice 17, pass = 0, slice in pass = 18, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 84.5156, 103.744, -80
+  point 2: 84.5156, 103.744, 80
+  point 3: 84.5156, -56.256, -80
+Slice 18, pass = 0, slice in pass = 19, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 83.9156, 103.744, -80
+  point 2: 83.9156, 103.744, 80
+  point 3: 83.9156, -56.256, -80
+Slice 19, pass = 0, slice in pass = 20, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 83.3156, 103.744, -80
+  point 2: 83.3156, 103.744, 80
+  point 3: 83.3156, -56.256, -80
+Slice 20, pass = 0, slice in pass = 21, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 82.7156, 103.744, -80
+  point 2: 82.7156, 103.744, 80
+  point 3: 82.7156, -56.256, -80
+Slice 21, pass = 0, slice in pass = 22, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 82.1156, 103.744, -80
+  point 2: 82.1156, 103.744, 80
+  point 3: 82.1156, -56.256, -80
+Slice 22, pass = 0, slice in pass = 23, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 81.5156, 103.744, -80
+  point 2: 81.5156, 103.744, 80
+  point 3: 81.5156, -56.256, -80
+Slice 23, pass = 0, slice in pass = 24, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 80.9156, 103.744, -80
+  point 2: 80.9156, 103.744, 80
+  point 3: 80.9156, -56.256, -80
+Slice 24, pass = 0, slice in pass = 25, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 80.3156, 103.744, -80
+  point 2: 80.3156, 103.744, 80
+  point 3: 80.3156, -56.256, -80
+Slice 25, pass = 0, slice in pass = 26, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 79.7156, 103.744, -80
+  point 2: 79.7156, 103.744, 80
+  point 3: 79.7156, -56.256, -80
+Slice 26, pass = 0, slice in pass = 27, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 79.1156, 103.744, -80
+  point 2: 79.1156, 103.744, 80
+  point 3: 79.1156, -56.256, -80
+Slice 27, pass = 0, slice in pass = 28, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 78.5156, 103.744, -80
+  point 2: 78.5156, 103.744, 80
+  point 3: 78.5156, -56.256, -80
+Slice 28, pass = 0, slice in pass = 29, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 77.9156, 103.744, -80
+  point 2: 77.9156, 103.744, 80
+  point 3: 77.9156, -56.256, -80
+Slice 29, pass = 0, slice in pass = 30, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 77.3157, 103.744, -80
+  point 2: 77.3157, 103.744, 80
+  point 3: 77.3157, -56.256, -80
+Slice 30, pass = 0, slice in pass = 31, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 76.7157, 103.744, -80
+  point 2: 76.7157, 103.744, 80
+  point 3: 76.7157, -56.256, -80
+Slice 31, pass = 0, slice in pass = 32, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 76.1157, 103.744, -80
+  point 2: 76.1157, 103.744, 80
+  point 3: 76.1157, -56.256, -80
+Slice 32, pass = 0, slice in pass = 33, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 75.5157, 103.744, -80
+  point 2: 75.5157, 103.744, 80
+  point 3: 75.5157, -56.256, -80
+Slice 33, pass = 0, slice in pass = 34, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 74.9157, 103.744, -80
+  point 2: 74.9157, 103.744, 80
+  point 3: 74.9157, -56.256, -80
+Slice 34, pass = 0, slice in pass = 35, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 74.3157, 103.744, -80
+  point 2: 74.3157, 103.744, 80
+  point 3: 74.3157, -56.256, -80
+Slice 35, pass = 0, slice in pass = 36, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 73.7157, 103.744, -80
+  point 2: 73.7157, 103.744, 80
+  point 3: 73.7157, -56.256, -80
+Slice 36, pass = 0, slice in pass = 37, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 73.1157, 103.744, -80
+  point 2: 73.1157, 103.744, 80
+  point 3: 73.1157, -56.256, -80
+Slice 37, pass = 0, slice in pass = 38, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 72.5157, 103.744, -80
+  point 2: 72.5157, 103.744, 80
+  point 3: 72.5157, -56.256, -80
+Slice 38, pass = 0, slice in pass = 39, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 71.9157, 103.744, -80
+  point 2: 71.9157, 103.744, 80
+  point 3: 71.9157, -56.256, -80
+Slice 39, pass = 0, slice in pass = 40, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 71.3157, 103.744, -80
+  point 2: 71.3157, 103.744, 80
+  point 3: 71.3157, -56.256, -80
+Slice 40, pass = 0, slice in pass = 41, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 70.7157, 103.744, -80
+  point 2: 70.7157, 103.744, 80
+  point 3: 70.7157, -56.256, -80
+Slice 41, pass = 0, slice in pass = 42, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 70.1157, 103.744, -80
+  point 2: 70.1157, 103.744, 80
+  point 3: 70.1157, -56.256, -80
+Slice 42, pass = 0, slice in pass = 43, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 69.5157, 103.744, -80
+  point 2: 69.5157, 103.744, 80
+  point 3: 69.5157, -56.256, -80
+Slice 43, pass = 0, slice in pass = 44, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 68.9157, 103.744, -80
+  point 2: 68.9157, 103.744, 80
+  point 3: 68.9157, -56.256, -80
+Slice 44, pass = 0, slice in pass = 45, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 68.3157, 103.744, -80
+  point 2: 68.3157, 103.744, 80
+  point 3: 68.3157, -56.256, -80
+Slice 45, pass = 0, slice in pass = 46, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 67.7157, 103.744, -80
+  point 2: 67.7157, 103.744, 80
+  point 3: 67.7157, -56.256, -80
+Slice 46, pass = 0, slice in pass = 47, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 67.1157, 103.744, -80
+  point 2: 67.1157, 103.744, 80
+  point 3: 67.1157, -56.256, -80
+Slice 47, pass = 0, slice in pass = 48, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 66.5157, 103.744, -80
+  point 2: 66.5157, 103.744, 80
+  point 3: 66.5157, -56.256, -80
+Slice 48, pass = 0, slice in pass = 49, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 65.9157, 103.744, -80
+  point 2: 65.9157, 103.744, 80
+  point 3: 65.9157, -56.256, -80
+Slice 49, pass = 0, slice in pass = 50, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 65.3157, 103.744, -80
+  point 2: 65.3157, 103.744, 80
+  point 3: 65.3157, -56.256, -80
+Slice 50, pass = 0, slice in pass = 51, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 64.7157, 103.744, -80
+  point 2: 64.7157, 103.744, 80
+  point 3: 64.7157, -56.256, -80
+Slice 51, pass = 0, slice in pass = 52, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 64.1157, 103.744, -80
+  point 2: 64.1157, 103.744, 80
+  point 3: 64.1157, -56.256, -80
+Slice 52, pass = 0, slice in pass = 53, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 63.5157, 103.744, -80
+  point 2: 63.5157, 103.744, 80
+  point 3: 63.5157, -56.256, -80
+Slice 53, pass = 0, slice in pass = 54, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 62.9157, 103.744, -80
+  point 2: 62.9157, 103.744, 80
+  point 3: 62.9157, -56.256, -80
+Slice 54, pass = 0, slice in pass = 55, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 62.3157, 103.744, -80
+  point 2: 62.3157, 103.744, 80
+  point 3: 62.3157, -56.256, -80
+Slice 55, pass = 0, slice in pass = 56, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 61.7157, 103.744, -80
+  point 2: 61.7157, 103.744, 80
+  point 3: 61.7157, -56.256, -80
+Slice 56, pass = 0, slice in pass = 57, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 61.1157, 103.744, -80
+  point 2: 61.1157, 103.744, 80
+  point 3: 61.1157, -56.256, -80
+Slice 57, pass = 0, slice in pass = 58, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 60.5157, 103.744, -80
+  point 2: 60.5157, 103.744, 80
+  point 3: 60.5157, -56.256, -80
+Slice 58, pass = 0, slice in pass = 59, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 59.9157, 103.744, -80
+  point 2: 59.9157, 103.744, 80
+  point 3: 59.9157, -56.256, -80
+Slice 59, pass = 0, slice in pass = 60, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 59.3157, 103.744, -80
+  point 2: 59.3157, 103.744, 80
+  point 3: 59.3157, -56.256, -80
+Slice 60, pass = 0, slice in pass = 61, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 58.7157, 103.744, -80
+  point 2: 58.7157, 103.744, 80
+  point 3: 58.7157, -56.256, -80
+Slice 61, pass = 0, slice in pass = 62, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 58.1157, 103.744, -80
+  point 2: 58.1157, 103.744, 80
+  point 3: 58.1157, -56.256, -80
+Slice 62, pass = 0, slice in pass = 63, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 57.5157, 103.744, -80
+  point 2: 57.5157, 103.744, 80
+  point 3: 57.5157, -56.256, -80
+Slice 63, pass = 0, slice in pass = 64, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 56.9157, 103.744, -80
+  point 2: 56.9157, 103.744, 80
+  point 3: 56.9157, -56.256, -80
+Slice 64, pass = 0, slice in pass = 65, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 56.3157, 103.744, -80
+  point 2: 56.3157, 103.744, 80
+  point 3: 56.3157, -56.256, -80
+Slice 65, pass = 0, slice in pass = 66, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 55.7157, 103.744, -80
+  point 2: 55.7157, 103.744, 80
+  point 3: 55.7157, -56.256, -80
+Slice 66, pass = 0, slice in pass = 67, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 55.1157, 103.744, -80
+  point 2: 55.1157, 103.744, 80
+  point 3: 55.1157, -56.256, -80
+Slice 67, pass = 0, slice in pass = 68, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 54.5157, 103.744, -80
+  point 2: 54.5157, 103.744, 80
+  point 3: 54.5157, -56.256, -80
+Slice 68, pass = 0, slice in pass = 69, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 53.9157, 103.744, -80
+  point 2: 53.9157, 103.744, 80
+  point 3: 53.9157, -56.256, -80
+Slice 69, pass = 0, slice in pass = 70, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 53.3157, 103.744, -80
+  point 2: 53.3157, 103.744, 80
+  point 3: 53.3157, -56.256, -80
+Slice 70, pass = 0, slice in pass = 71, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 52.7157, 103.744, -80
+  point 2: 52.7157, 103.744, 80
+  point 3: 52.7157, -56.256, -80
+Slice 71, pass = 0, slice in pass = 72, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 52.1157, 103.744, -80
+  point 2: 52.1157, 103.744, 80
+  point 3: 52.1157, -56.256, -80
+Slice 72, pass = 0, slice in pass = 73, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 51.5157, 103.744, -80
+  point 2: 51.5157, 103.744, 80
+  point 3: 51.5157, -56.256, -80
+Slice 73, pass = 0, slice in pass = 74, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 50.9157, 103.744, -80
+  point 2: 50.9157, 103.744, 80
+  point 3: 50.9157, -56.256, -80
+Slice 74, pass = 0, slice in pass = 75, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 50.3157, 103.744, -80
+  point 2: 50.3157, 103.744, 80
+  point 3: 50.3157, -56.256, -80
+Slice 75, pass = 0, slice in pass = 76, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 49.7157, 103.744, -80
+  point 2: 49.7157, 103.744, 80
+  point 3: 49.7157, -56.256, -80
+Slice 76, pass = 0, slice in pass = 77, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 49.1157, 103.744, -80
+  point 2: 49.1157, 103.744, 80
+  point 3: 49.1157, -56.256, -80
+Slice 77, pass = 0, slice in pass = 78, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 48.5157, 103.744, -80
+  point 2: 48.5157, 103.744, 80
+  point 3: 48.5157, -56.256, -80
+Slice 78, pass = 0, slice in pass = 79, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 47.9157, 103.744, -80
+  point 2: 47.9157, 103.744, 80
+  point 3: 47.9157, -56.256, -80
+Slice 79, pass = 0, slice in pass = 80, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 47.3157, 103.744, -80
+  point 2: 47.3157, 103.744, 80
+  point 3: 47.3157, -56.256, -80
+Slice 80, pass = 0, slice in pass = 81, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 46.7157, 103.744, -80
+  point 2: 46.7157, 103.744, 80
+  point 3: 46.7157, -56.256, -80
+Slice 81, pass = 0, slice in pass = 82, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 46.1157, 103.744, -80
+  point 2: 46.1157, 103.744, 80
+  point 3: 46.1157, -56.256, -80
+Slice 82, pass = 0, slice in pass = 83, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 45.5157, 103.744, -80
+  point 2: 45.5157, 103.744, 80
+  point 3: 45.5157, -56.256, -80
+Slice 83, pass = 0, slice in pass = 84, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 44.9157, 103.744, -80
+  point 2: 44.9157, 103.744, 80
+  point 3: 44.9157, -56.256, -80
+Slice 84, pass = 0, slice in pass = 85, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 44.3157, 103.744, -80
+  point 2: 44.3157, 103.744, 80
+  point 3: 44.3157, -56.256, -80
+Slice 85, pass = 0, slice in pass = 86, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 43.7157, 103.744, -80
+  point 2: 43.7157, 103.744, 80
+  point 3: 43.7157, -56.256, -80
+Slice 86, pass = 0, slice in pass = 87, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 43.1157, 103.744, -80
+  point 2: 43.1157, 103.744, 80
+  point 3: 43.1157, -56.256, -80
+Slice 87, pass = 0, slice in pass = 88, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 42.5157, 103.744, -80
+  point 2: 42.5157, 103.744, 80
+  point 3: 42.5157, -56.256, -80
+Slice 88, pass = 0, slice in pass = 89, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 41.9157, 103.744, -80
+  point 2: 41.9157, 103.744, 80
+  point 3: 41.9157, -56.256, -80
+Slice 89, pass = 0, slice in pass = 90, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 41.3157, 103.744, -80
+  point 2: 41.3157, 103.744, 80
+  point 3: 41.3157, -56.256, -80
+Slice 90, pass = 0, slice in pass = 91, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 40.7157, 103.744, -80
+  point 2: 40.7157, 103.744, 80
+  point 3: 40.7157, -56.256, -80
+Slice 91, pass = 0, slice in pass = 92, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 40.1157, 103.744, -80
+  point 2: 40.1157, 103.744, 80
+  point 3: 40.1157, -56.256, -80
+Slice 92, pass = 0, slice in pass = 93, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 39.5157, 103.744, -80
+  point 2: 39.5157, 103.744, 80
+  point 3: 39.5157, -56.256, -80
+Slice 93, pass = 0, slice in pass = 94, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 38.9157, 103.744, -80
+  point 2: 38.9157, 103.744, 80
+  point 3: 38.9157, -56.256, -80
+Slice 94, pass = 0, slice in pass = 95, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 38.3158, 103.744, -80
+  point 2: 38.3158, 103.744, 80
+  point 3: 38.3158, -56.256, -80
+Slice 95, pass = 0, slice in pass = 96, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 37.7158, 103.744, -80
+  point 2: 37.7158, 103.744, 80
+  point 3: 37.7158, -56.256, -80
+Slice 96, pass = 0, slice in pass = 97, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 37.1158, 103.744, -80
+  point 2: 37.1158, 103.744, 80
+  point 3: 37.1158, -56.256, -80
+Slice 97, pass = 0, slice in pass = 98, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 36.5158, 103.744, -80
+  point 2: 36.5158, 103.744, 80
+  point 3: 36.5158, -56.256, -80
+Slice 98, pass = 0, slice in pass = 99, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 35.9158, 103.744, -80
+  point 2: 35.9158, 103.744, 80
+  point 3: 35.9158, -56.256, -80
+Slice 99, pass = 0, slice in pass = 100, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 35.3158, 103.744, -80
+  point 2: 35.3158, 103.744, 80
+  point 3: 35.3158, -56.256, -80
+Slice 100, pass = 0, slice in pass = 101, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 34.7158, 103.744, -80
+  point 2: 34.7158, 103.744, 80
+  point 3: 34.7158, -56.256, -80
+Slice 101, pass = 0, slice in pass = 102, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 34.1158, 103.744, -80
+  point 2: 34.1158, 103.744, 80
+  point 3: 34.1158, -56.256, -80
+Slice 102, pass = 0, slice in pass = 103, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 33.5158, 103.744, -80
+  point 2: 33.5158, 103.744, 80
+  point 3: 33.5158, -56.256, -80
+Slice 103, pass = 0, slice in pass = 104, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 32.9158, 103.744, -80
+  point 2: 32.9158, 103.744, 80
+  point 3: 32.9158, -56.256, -80
+Slice 104, pass = 0, slice in pass = 105, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 32.3158, 103.744, -80
+  point 2: 32.3158, 103.744, 80
+  point 3: 32.3158, -56.256, -80
+Slice 105, pass = 0, slice in pass = 106, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 31.7158, 103.744, -80
+  point 2: 31.7158, 103.744, 80
+  point 3: 31.7158, -56.256, -80
+Slice 106, pass = 0, slice in pass = 107, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 31.1158, 103.744, -80
+  point 2: 31.1158, 103.744, 80
+  point 3: 31.1158, -56.256, -80
+Slice 107, pass = 0, slice in pass = 108, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 30.5158, 103.744, -80
+  point 2: 30.5158, 103.744, 80
+  point 3: 30.5158, -56.256, -80
+Slice 108, pass = 0, slice in pass = 109, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 29.9158, 103.744, -80
+  point 2: 29.9158, 103.744, 80
+  point 3: 29.9158, -56.256, -80
+Slice 109, pass = 0, slice in pass = 110, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 29.3158, 103.744, -80
+  point 2: 29.3158, 103.744, 80
+  point 3: 29.3158, -56.256, -80
+Slice 110, pass = 0, slice in pass = 111, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 28.7158, 103.744, -80
+  point 2: 28.7158, 103.744, 80
+  point 3: 28.7158, -56.256, -80
+Slice 111, pass = 0, slice in pass = 112, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 28.1158, 103.744, -80
+  point 2: 28.1158, 103.744, 80
+  point 3: 28.1158, -56.256, -80
+Slice 112, pass = 0, slice in pass = 113, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 27.5158, 103.744, -80
+  point 2: 27.5158, 103.744, 80
+  point 3: 27.5158, -56.256, -80
+Slice 113, pass = 0, slice in pass = 114, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 26.9158, 103.744, -80
+  point 2: 26.9158, 103.744, 80
+  point 3: 26.9158, -56.256, -80
+Slice 114, pass = 0, slice in pass = 115, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 26.3158, 103.744, -80
+  point 2: 26.3158, 103.744, 80
+  point 3: 26.3158, -56.256, -80
+Slice 115, pass = 0, slice in pass = 116, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 25.7158, 103.744, -80
+  point 2: 25.7158, 103.744, 80
+  point 3: 25.7158, -56.256, -80
+Slice 116, pass = 0, slice in pass = 117, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 25.1158, 103.744, -80
+  point 2: 25.1158, 103.744, 80
+  point 3: 25.1158, -56.256, -80
+Slice 117, pass = 0, slice in pass = 118, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 24.5158, 103.744, -80
+  point 2: 24.5158, 103.744, 80
+  point 3: 24.5158, -56.256, -80
+Slice 118, pass = 0, slice in pass = 119, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 23.9158, 103.744, -80
+  point 2: 23.9158, 103.744, 80
+  point 3: 23.9158, -56.256, -80
+Slice 119, pass = 0, slice in pass = 120, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 23.3158, 103.744, -80
+  point 2: 23.3158, 103.744, 80
+  point 3: 23.3158, -56.256, -80
+Slice 120, pass = 0, slice in pass = 121, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 22.7158, 103.744, -80
+  point 2: 22.7158, 103.744, 80
+  point 3: 22.7158, -56.256, -80
+Slice 121, pass = 0, slice in pass = 122, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 22.1158, 103.744, -80
+  point 2: 22.1158, 103.744, 80
+  point 3: 22.1158, -56.256, -80
+Slice 122, pass = 0, slice in pass = 123, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 21.5158, 103.744, -80
+  point 2: 21.5158, 103.744, 80
+  point 3: 21.5158, -56.256, -80
+Slice 123, pass = 0, slice in pass = 124, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 20.9158, 103.744, -80
+  point 2: 20.9158, 103.744, 80
+  point 3: 20.9158, -56.256, -80
+Slice 124, pass = 0, slice in pass = 125, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 20.3158, 103.744, -80
+  point 2: 20.3158, 103.744, 80
+  point 3: 20.3158, -56.256, -80
+Slice 125, pass = 0, slice in pass = 126, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 19.7158, 103.744, -80
+  point 2: 19.7158, 103.744, 80
+  point 3: 19.7158, -56.256, -80
+Slice 126, pass = 0, slice in pass = 127, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 19.1158, 103.744, -80
+  point 2: 19.1158, 103.744, 80
+  point 3: 19.1158, -56.256, -80
+Slice 127, pass = 0, slice in pass = 128, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 18.5158, 103.744, -80
+  point 2: 18.5158, 103.744, 80
+  point 3: 18.5158, -56.256, -80
+Slice 128, pass = 0, slice in pass = 129, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 17.9158, 103.744, -80
+  point 2: 17.9158, 103.744, 80
+  point 3: 17.9158, -56.256, -80
+Slice 129, pass = 0, slice in pass = 130, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 17.3158, 103.744, -80
+  point 2: 17.3158, 103.744, 80
+  point 3: 17.3158, -56.256, -80
+Slice 130, pass = 0, slice in pass = 131, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 16.7158, 103.744, -80
+  point 2: 16.7158, 103.744, 80
+  point 3: 16.7158, -56.256, -80
+Slice 131, pass = 0, slice in pass = 132, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 16.1158, 103.744, -80
+  point 2: 16.1158, 103.744, 80
+  point 3: 16.1158, -56.256, -80
+Slice 132, pass = 0, slice in pass = 133, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 15.5158, 103.744, -80
+  point 2: 15.5158, 103.744, 80
+  point 3: 15.5158, -56.256, -80
+Slice 133, pass = 0, slice in pass = 134, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 14.9158, 103.744, -80
+  point 2: 14.9158, 103.744, 80
+  point 3: 14.9158, -56.256, -80
+Slice 134, pass = 0, slice in pass = 135, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 14.3158, 103.744, -80
+  point 2: 14.3158, 103.744, 80
+  point 3: 14.3158, -56.256, -80
+Slice 135, pass = 0, slice in pass = 136, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 13.7158, 103.744, -80
+  point 2: 13.7158, 103.744, 80
+  point 3: 13.7158, -56.256, -80
+Slice 136, pass = 0, slice in pass = 137, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 13.1158, 103.744, -80
+  point 2: 13.1158, 103.744, 80
+  point 3: 13.1158, -56.256, -80
+Slice 137, pass = 0, slice in pass = 138, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 12.5158, 103.744, -80
+  point 2: 12.5158, 103.744, 80
+  point 3: 12.5158, -56.256, -80
+Slice 138, pass = 0, slice in pass = 139, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 11.9158, 103.744, -80
+  point 2: 11.9158, 103.744, 80
+  point 3: 11.9158, -56.256, -80
+Slice 139, pass = 0, slice in pass = 140, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 11.3158, 103.744, -80
+  point 2: 11.3158, 103.744, 80
+  point 3: 11.3158, -56.256, -80
+Slice 140, pass = 0, slice in pass = 141, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 10.7158, 103.744, -80
+  point 2: 10.7158, 103.744, 80
+  point 3: 10.7158, -56.256, -80
+Slice 141, pass = 0, slice in pass = 142, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 10.1158, 103.744, -80
+  point 2: 10.1158, 103.744, 80
+  point 3: 10.1158, -56.256, -80
+Slice 142, pass = 0, slice in pass = 143, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 9.51575, 103.744, -80
+  point 2: 9.51575, 103.744, 80
+  point 3: 9.51575, -56.256, -80
+Slice 143, pass = 0, slice in pass = 144, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 8.91575, 103.744, -80
+  point 2: 8.91575, 103.744, 80
+  point 3: 8.91575, -56.256, -80
+Slice 144, pass = 0, slice in pass = 145, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 8.31575, 103.744, -80
+  point 2: 8.31575, 103.744, 80
+  point 3: 8.31575, -56.256, -80
+Slice 145, pass = 0, slice in pass = 146, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 7.71575, 103.744, -80
+  point 2: 7.71575, 103.744, 80
+  point 3: 7.71575, -56.256, -80
+Slice 146, pass = 0, slice in pass = 147, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 7.11575, 103.744, -80
+  point 2: 7.11575, 103.744, 80
+  point 3: 7.11575, -56.256, -80
+Slice 147, pass = 0, slice in pass = 148, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 6.51575, 103.744, -80
+  point 2: 6.51575, 103.744, 80
+  point 3: 6.51575, -56.256, -80
+Slice 148, pass = 0, slice in pass = 149, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 5.91575, 103.744, -80
+  point 2: 5.91575, 103.744, 80
+  point 3: 5.91575, -56.256, -80
+Slice 149, pass = 0, slice in pass = 150, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 5.31575, 103.744, -80
+  point 2: 5.31575, 103.744, 80
+  point 3: 5.31575, -56.256, -80
+Slice 150, pass = 0, slice in pass = 151, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 4.71575, 103.744, -80
+  point 2: 4.71575, 103.744, 80
+  point 3: 4.71575, -56.256, -80
+Slice 151, pass = 0, slice in pass = 152, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 4.11575, 103.744, -80
+  point 2: 4.11575, 103.744, 80
+  point 3: 4.11575, -56.256, -80
+Slice 152, pass = 0, slice in pass = 153, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 3.51575, 103.744, -80
+  point 2: 3.51575, 103.744, 80
+  point 3: 3.51575, -56.256, -80
+Slice 153, pass = 0, slice in pass = 154, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 2.91575, 103.744, -80
+  point 2: 2.91575, 103.744, 80
+  point 3: 2.91575, -56.256, -80
+Slice 154, pass = 0, slice in pass = 155, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 2.31575, 103.744, -80
+  point 2: 2.31575, 103.744, 80
+  point 3: 2.31575, -56.256, -80
+Slice 155, pass = 0, slice in pass = 156, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 1.71575, 103.744, -80
+  point 2: 1.71575, 103.744, 80
+  point 3: 1.71575, -56.256, -80
+Slice 156, pass = 0, slice in pass = 157, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 1.11575, 103.744, -80
+  point 2: 1.11575, 103.744, 80
+  point 3: 1.11575, -56.256, -80
+Slice 157, pass = 0, slice in pass = 158, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: 0.515751, 103.744, -80
+  point 2: 0.515751, 103.744, 80
+  point 3: 0.515751, -56.256, -80
+Slice 158, pass = 0, slice in pass = 159, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -0.084249, 103.744, -80
+  point 2: -0.084249, 103.744, 80
+  point 3: -0.084249, -56.256, -80
+Slice 159, pass = 0, slice in pass = 160, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -0.684249, 103.744, -80
+  point 2: -0.684249, 103.744, 80
+  point 3: -0.684249, -56.256, -80
+Slice 160, pass = 0, slice in pass = 161, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -1.28425, 103.744, -80
+  point 2: -1.28425, 103.744, 80
+  point 3: -1.28425, -56.256, -80
+Slice 161, pass = 0, slice in pass = 162, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -1.88425, 103.744, -80
+  point 2: -1.88425, 103.744, 80
+  point 3: -1.88425, -56.256, -80
+Slice 162, pass = 0, slice in pass = 163, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -2.48425, 103.744, -80
+  point 2: -2.48425, 103.744, 80
+  point 3: -2.48425, -56.256, -80
+Slice 163, pass = 0, slice in pass = 164, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -3.08425, 103.744, -80
+  point 2: -3.08425, 103.744, 80
+  point 3: -3.08425, -56.256, -80
+Slice 164, pass = 0, slice in pass = 165, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -3.68425, 103.744, -80
+  point 2: -3.68425, 103.744, 80
+  point 3: -3.68425, -56.256, -80
+Slice 165, pass = 0, slice in pass = 166, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -4.28425, 103.744, -80
+  point 2: -4.28425, 103.744, 80
+  point 3: -4.28425, -56.256, -80
+Slice 166, pass = 0, slice in pass = 167, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -4.88425, 103.744, -80
+  point 2: -4.88425, 103.744, 80
+  point 3: -4.88425, -56.256, -80
+Slice 167, pass = 0, slice in pass = 168, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -5.48425, 103.744, -80
+  point 2: -5.48425, 103.744, 80
+  point 3: -5.48425, -56.256, -80
+Slice 168, pass = 0, slice in pass = 169, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -6.08425, 103.744, -80
+  point 2: -6.08425, 103.744, 80
+  point 3: -6.08425, -56.256, -80
+Slice 169, pass = 0, slice in pass = 170, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -6.68425, 103.744, -80
+  point 2: -6.68425, 103.744, 80
+  point 3: -6.68425, -56.256, -80
+Slice 170, pass = 0, slice in pass = 171, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -7.28425, 103.744, -80
+  point 2: -7.28425, 103.744, 80
+  point 3: -7.28425, -56.256, -80
+Slice 171, pass = 0, slice in pass = 172, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -7.88425, 103.744, -80
+  point 2: -7.88425, 103.744, 80
+  point 3: -7.88425, -56.256, -80
+Slice 172, pass = 0, slice in pass = 173, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -8.48425, 103.744, -80
+  point 2: -8.48425, 103.744, 80
+  point 3: -8.48425, -56.256, -80
+Slice 173, pass = 0, slice in pass = 174, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -9.08425, 103.744, -80
+  point 2: -9.08425, 103.744, 80
+  point 3: -9.08425, -56.256, -80
+Slice 174, pass = 0, slice in pass = 175, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -9.68425, 103.744, -80
+  point 2: -9.68425, 103.744, 80
+  point 3: -9.68425, -56.256, -80
+Slice 175, pass = 0, slice in pass = 176, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -10.2842, 103.744, -80
+  point 2: -10.2842, 103.744, 80
+  point 3: -10.2842, -56.256, -80
+Slice 176, pass = 0, slice in pass = 177, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -10.8842, 103.744, -80
+  point 2: -10.8842, 103.744, 80
+  point 3: -10.8842, -56.256, -80
+Slice 177, pass = 0, slice in pass = 178, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -11.4843, 103.744, -80
+  point 2: -11.4843, 103.744, 80
+  point 3: -11.4843, -56.256, -80
+Slice 178, pass = 0, slice in pass = 179, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -12.0843, 103.744, -80
+  point 2: -12.0843, 103.744, 80
+  point 3: -12.0843, -56.256, -80
+Slice 179, pass = 0, slice in pass = 180, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -12.6843, 103.744, -80
+  point 2: -12.6843, 103.744, 80
+  point 3: -12.6843, -56.256, -80
+Slice 180, pass = 0, slice in pass = 181, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -13.2843, 103.744, -80
+  point 2: -13.2843, 103.744, 80
+  point 3: -13.2843, -56.256, -80
+Slice 181, pass = 0, slice in pass = 182, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -13.8843, 103.744, -80
+  point 2: -13.8843, 103.744, 80
+  point 3: -13.8843, -56.256, -80
+Slice 182, pass = 0, slice in pass = 183, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -14.4843, 103.744, -80
+  point 2: -14.4843, 103.744, 80
+  point 3: -14.4843, -56.256, -80
+Slice 183, pass = 0, slice in pass = 184, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -15.0843, 103.744, -80
+  point 2: -15.0843, 103.744, 80
+  point 3: -15.0843, -56.256, -80
+Slice 184, pass = 0, slice in pass = 185, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -15.6843, 103.744, -80
+  point 2: -15.6843, 103.744, 80
+  point 3: -15.6843, -56.256, -80
+Slice 185, pass = 0, slice in pass = 186, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -16.2843, 103.744, -80
+  point 2: -16.2843, 103.744, 80
+  point 3: -16.2843, -56.256, -80
+Slice 186, pass = 0, slice in pass = 187, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -16.8843, 103.744, -80
+  point 2: -16.8843, 103.744, 80
+  point 3: -16.8843, -56.256, -80
+Slice 187, pass = 0, slice in pass = 188, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -17.4843, 103.744, -80
+  point 2: -17.4843, 103.744, 80
+  point 3: -17.4843, -56.256, -80
+Slice 188, pass = 0, slice in pass = 189, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -18.0843, 103.744, -80
+  point 2: -18.0843, 103.744, 80
+  point 3: -18.0843, -56.256, -80
+Slice 189, pass = 0, slice in pass = 190, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -18.6843, 103.744, -80
+  point 2: -18.6843, 103.744, 80
+  point 3: -18.6843, -56.256, -80
+Slice 190, pass = 0, slice in pass = 191, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -19.2843, 103.744, -80
+  point 2: -19.2843, 103.744, 80
+  point 3: -19.2843, -56.256, -80
+Slice 191, pass = 0, slice in pass = 192, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -19.8843, 103.744, -80
+  point 2: -19.8843, 103.744, 80
+  point 3: -19.8843, -56.256, -80
+Slice 192, pass = 0, slice in pass = 193, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -20.4843, 103.744, -80
+  point 2: -20.4843, 103.744, 80
+  point 3: -20.4843, -56.256, -80
+Slice 193, pass = 0, slice in pass = 194, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -21.0843, 103.744, -80
+  point 2: -21.0843, 103.744, 80
+  point 3: -21.0843, -56.256, -80
+Slice 194, pass = 0, slice in pass = 195, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -21.6843, 103.744, -80
+  point 2: -21.6843, 103.744, 80
+  point 3: -21.6843, -56.256, -80
+Slice 195, pass = 0, slice in pass = 196, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -22.2843, 103.744, -80
+  point 2: -22.2843, 103.744, 80
+  point 3: -22.2843, -56.256, -80
+Slice 196, pass = 0, slice in pass = 197, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -22.8843, 103.744, -80
+  point 2: -22.8843, 103.744, 80
+  point 3: -22.8843, -56.256, -80
+Slice 197, pass = 0, slice in pass = 198, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -23.4843, 103.744, -80
+  point 2: -23.4843, 103.744, 80
+  point 3: -23.4843, -56.256, -80
+Slice 198, pass = 0, slice in pass = 199, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -24.0843, 103.744, -80
+  point 2: -24.0843, 103.744, 80
+  point 3: -24.0843, -56.256, -80
+Slice 199, pass = 0, slice in pass = 200, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -24.6843, 103.744, -80
+  point 2: -24.6843, 103.744, 80
+  point 3: -24.6843, -56.256, -80
+Slice 200, pass = 0, slice in pass = 201, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -25.2843, 103.744, -80
+  point 2: -25.2843, 103.744, 80
+  point 3: -25.2843, -56.256, -80
+Slice 201, pass = 0, slice in pass = 202, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -25.8843, 103.744, -80
+  point 2: -25.8843, 103.744, 80
+  point 3: -25.8843, -56.256, -80
+Slice 202, pass = 0, slice in pass = 203, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -26.4843, 103.744, -80
+  point 2: -26.4843, 103.744, 80
+  point 3: -26.4843, -56.256, -80
+Slice 203, pass = 0, slice in pass = 204, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -27.0843, 103.744, -80
+  point 2: -27.0843, 103.744, 80
+  point 3: -27.0843, -56.256, -80
+Slice 204, pass = 0, slice in pass = 205, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -27.6843, 103.744, -80
+  point 2: -27.6843, 103.744, 80
+  point 3: -27.6843, -56.256, -80
+Slice 205, pass = 0, slice in pass = 206, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -28.2843, 103.744, -80
+  point 2: -28.2843, 103.744, 80
+  point 3: -28.2843, -56.256, -80
+Slice 206, pass = 0, slice in pass = 207, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -28.8843, 103.744, -80
+  point 2: -28.8843, 103.744, 80
+  point 3: -28.8843, -56.256, -80
+Slice 207, pass = 0, slice in pass = 208, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -29.4843, 103.744, -80
+  point 2: -29.4843, 103.744, 80
+  point 3: -29.4843, -56.256, -80
+Slice 208, pass = 0, slice in pass = 209, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -30.0843, 103.744, -80
+  point 2: -30.0843, 103.744, 80
+  point 3: -30.0843, -56.256, -80
+Slice 209, pass = 0, slice in pass = 210, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -30.6843, 103.744, -80
+  point 2: -30.6843, 103.744, 80
+  point 3: -30.6843, -56.256, -80
+Slice 210, pass = 0, slice in pass = 211, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -31.2843, 103.744, -80
+  point 2: -31.2843, 103.744, 80
+  point 3: -31.2843, -56.256, -80
+Slice 211, pass = 0, slice in pass = 212, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -31.8843, 103.744, -80
+  point 2: -31.8843, 103.744, 80
+  point 3: -31.8843, -56.256, -80
+Slice 212, pass = 0, slice in pass = 213, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -32.4843, 103.744, -80
+  point 2: -32.4843, 103.744, 80
+  point 3: -32.4843, -56.256, -80
+Slice 213, pass = 0, slice in pass = 214, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -33.0843, 103.744, -80
+  point 2: -33.0843, 103.744, 80
+  point 3: -33.0843, -56.256, -80
+Slice 214, pass = 0, slice in pass = 215, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -33.6843, 103.744, -80
+  point 2: -33.6843, 103.744, 80
+  point 3: -33.6843, -56.256, -80
+Slice 215, pass = 0, slice in pass = 216, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -34.2843, 103.744, -80
+  point 2: -34.2843, 103.744, 80
+  point 3: -34.2843, -56.256, -80
+Slice 216, pass = 0, slice in pass = 217, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -34.8843, 103.744, -80
+  point 2: -34.8843, 103.744, 80
+  point 3: -34.8843, -56.256, -80
+Slice 217, pass = 0, slice in pass = 218, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -35.4843, 103.744, -80
+  point 2: -35.4843, 103.744, 80
+  point 3: -35.4843, -56.256, -80
+Slice 218, pass = 0, slice in pass = 219, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -36.0843, 103.744, -80
+  point 2: -36.0843, 103.744, 80
+  point 3: -36.0843, -56.256, -80
+Slice 219, pass = 0, slice in pass = 220, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -36.6842, 103.744, -80
+  point 2: -36.6842, 103.744, 80
+  point 3: -36.6842, -56.256, -80
+Slice 220, pass = 0, slice in pass = 221, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -37.2842, 103.744, -80
+  point 2: -37.2842, 103.744, 80
+  point 3: -37.2842, -56.256, -80
+Slice 221, pass = 0, slice in pass = 222, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -37.8842, 103.744, -80
+  point 2: -37.8842, 103.744, 80
+  point 3: -37.8842, -56.256, -80
+Slice 222, pass = 0, slice in pass = 223, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -38.4842, 103.744, -80
+  point 2: -38.4842, 103.744, 80
+  point 3: -38.4842, -56.256, -80
+Slice 223, pass = 0, slice in pass = 224, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -39.0842, 103.744, -80
+  point 2: -39.0842, 103.744, 80
+  point 3: -39.0842, -56.256, -80
+Slice 224, pass = 0, slice in pass = 225, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -39.6842, 103.744, -80
+  point 2: -39.6842, 103.744, 80
+  point 3: -39.6842, -56.256, -80
+Slice 225, pass = 0, slice in pass = 226, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -40.2842, 103.744, -80
+  point 2: -40.2842, 103.744, 80
+  point 3: -40.2842, -56.256, -80
+Slice 226, pass = 0, slice in pass = 227, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -40.8842, 103.744, -80
+  point 2: -40.8842, 103.744, 80
+  point 3: -40.8842, -56.256, -80
+Slice 227, pass = 0, slice in pass = 228, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -41.4842, 103.744, -80
+  point 2: -41.4842, 103.744, 80
+  point 3: -41.4842, -56.256, -80
+Slice 228, pass = 0, slice in pass = 229, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -42.0842, 103.744, -80
+  point 2: -42.0842, 103.744, 80
+  point 3: -42.0842, -56.256, -80
+Slice 229, pass = 0, slice in pass = 230, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -42.6842, 103.744, -80
+  point 2: -42.6842, 103.744, 80
+  point 3: -42.6842, -56.256, -80
+Slice 230, pass = 0, slice in pass = 231, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -43.2842, 103.744, -80
+  point 2: -43.2842, 103.744, 80
+  point 3: -43.2842, -56.256, -80
+Slice 231, pass = 0, slice in pass = 232, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -43.8842, 103.744, -80
+  point 2: -43.8842, 103.744, 80
+  point 3: -43.8842, -56.256, -80
+Slice 232, pass = 0, slice in pass = 233, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -44.4842, 103.744, -80
+  point 2: -44.4842, 103.744, 80
+  point 3: -44.4842, -56.256, -80
+Slice 233, pass = 0, slice in pass = 234, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -45.0842, 103.744, -80
+  point 2: -45.0842, 103.744, 80
+  point 3: -45.0842, -56.256, -80
+Slice 234, pass = 0, slice in pass = 235, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -45.6842, 103.744, -80
+  point 2: -45.6842, 103.744, 80
+  point 3: -45.6842, -56.256, -80
+Slice 235, pass = 0, slice in pass = 236, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -46.2842, 103.744, -80
+  point 2: -46.2842, 103.744, 80
+  point 3: -46.2842, -56.256, -80
+Slice 236, pass = 0, slice in pass = 237, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -46.8842, 103.744, -80
+  point 2: -46.8842, 103.744, 80
+  point 3: -46.8842, -56.256, -80
+Slice 237, pass = 0, slice in pass = 238, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -47.4842, 103.744, -80
+  point 2: -47.4842, 103.744, 80
+  point 3: -47.4842, -56.256, -80
+Slice 238, pass = 0, slice in pass = 239, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -48.0842, 103.744, -80
+  point 2: -48.0842, 103.744, 80
+  point 3: -48.0842, -56.256, -80
+Slice 239, pass = 0, slice in pass = 240, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -48.6842, 103.744, -80
+  point 2: -48.6842, 103.744, 80
+  point 3: -48.6842, -56.256, -80
+Slice 240, pass = 0, slice in pass = 241, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -49.2842, 103.744, -80
+  point 2: -49.2842, 103.744, 80
+  point 3: -49.2842, -56.256, -80
+Slice 241, pass = 0, slice in pass = 242, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -49.8842, 103.744, -80
+  point 2: -49.8842, 103.744, 80
+  point 3: -49.8842, -56.256, -80
+Slice 242, pass = 0, slice in pass = 243, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -50.4842, 103.744, -80
+  point 2: -50.4842, 103.744, 80
+  point 3: -50.4842, -56.256, -80
+Slice 243, pass = 0, slice in pass = 244, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -51.0842, 103.744, -80
+  point 2: -51.0842, 103.744, 80
+  point 3: -51.0842, -56.256, -80
+Slice 244, pass = 0, slice in pass = 245, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -51.6842, 103.744, -80
+  point 2: -51.6842, 103.744, 80
+  point 3: -51.6842, -56.256, -80
+Slice 245, pass = 0, slice in pass = 246, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -52.2842, 103.744, -80
+  point 2: -52.2842, 103.744, 80
+  point 3: -52.2842, -56.256, -80
+Slice 246, pass = 0, slice in pass = 247, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -52.8842, 103.744, -80
+  point 2: -52.8842, 103.744, 80
+  point 3: -52.8842, -56.256, -80
+Slice 247, pass = 0, slice in pass = 248, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -53.4842, 103.744, -80
+  point 2: -53.4842, 103.744, 80
+  point 3: -53.4842, -56.256, -80
+Slice 248, pass = 0, slice in pass = 249, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -54.0842, 103.744, -80
+  point 2: -54.0842, 103.744, 80
+  point 3: -54.0842, -56.256, -80
+Slice 249, pass = 0, slice in pass = 250, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -54.6842, 103.744, -80
+  point 2: -54.6842, 103.744, 80
+  point 3: -54.6842, -56.256, -80
+Slice 250, pass = 0, slice in pass = 251, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -55.2842, 103.744, -80
+  point 2: -55.2842, 103.744, 80
+  point 3: -55.2842, -56.256, -80
+Slice 251, pass = 0, slice in pass = 252, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -55.8842, 103.744, -80
+  point 2: -55.8842, 103.744, 80
+  point 3: -55.8842, -56.256, -80
+Slice 252, pass = 0, slice in pass = 253, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -56.4842, 103.744, -80
+  point 2: -56.4842, 103.744, 80
+  point 3: -56.4842, -56.256, -80
+Slice 253, pass = 0, slice in pass = 254, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -57.0842, 103.744, -80
+  point 2: -57.0842, 103.744, 80
+  point 3: -57.0842, -56.256, -80
+Slice 254, pass = 0, slice in pass = 255, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -57.6842, 103.744, -80
+  point 2: -57.6842, 103.744, 80
+  point 3: -57.6842, -56.256, -80
+Slice 255, pass = 0, slice in pass = 256, transpose = 0, rotation = 0, coilConfigUID = 0
+  point 1: -58.2842, 103.744, -80
+  point 2: -58.2842, 103.744, 80
+  point 3: -58.2842, -56.256, -80
+
+...........PRESCAN_HEADER..................
+Offset to/size of PRESCAN_HEADER: 141320, 1500
+...PS internal use only (variable "command"): 0
+...PS MPS R1 setting 1 - 7: 9
+...PS MPS R2 setting 1 - 30: 29
+...PS MPS Transmit gain setting 0 - 200: 172
+...PS MPS Center frequency Hz: 1277222110
+...PS APS R1 setting 1 - 7: 9
+...PS APS R2 setting 1 - 30: 29
+...PS APS Transmit gain setting 0 - 200: 172
+...PS APS Center frequency Hz: 1277222110
+...PS rational scaling (variable "scalei"): 0.00127302
+...PS unused (variable "scaleq"): 0
+...PS noise test 0=16 1=32 bits 0, 1: 135523253
+...PS prescan order logic (0-5): 2
+...PS bit mask 4 bits: 0
+...PS powerspec: 
+...PS filler1: 0
+...PS filler2: 0
+...PS xshim: -7
+...PS yshim: -4
+...PS zshim: -33
+...PS recon enable: 0
+...Autoshim successful (1), autoshim failed/smart/OFF (0): 1
+...PS mean +/- std noise each receiver: 
+ rec[0]: 1 +/- 3.551 (11.0642%)
+ rec[1]: 1 +/- 3.84151 (9.45407%)
+ rec[2]: 1 +/- 3.63279 (10.5717%)
+ rec[3]: 1 +/- 4.61267 (6.55719%)
+ rec[4]: 1 +/- 3.63589 (10.5536%)
+ rec[5]: 1 +/- 2.03148 (33.8062%)
+ rec[6]: 1 +/- 3.78487 (9.73912%)
+ rec[7]: 1 +/- 4.11132 (8.25392%)
+...Spectro PS line width: -999
+...Spectro PS water suppression flip angle: -999
+...Spectro PS water suppression level: -999
+...Smart prescan: 3
+...Smart prescan string: TG/s1
+
+			15x fields
+...Variable "phase_correction_status": 0
+
+			20x fields
+...Variable "psc_ta": 38
+...Variable "broad_band_select": 1
+
+...........ExamData Type..................
+Offset to/size of ExamData section: 142820, 1960
+...Exam number: 1
+...Exam description: LEFT KNEE
+...Exam date/time stamp: (1351782420) Thu Nov  1 08:07:00 2012
+...Start time (secs) of first axial in exam: 0
+...Cell number at theta: 0
+...Cell spacing: 0
+...Distance from source to detector: 0
+...Distance from source to iso: 0
+...Indicates number of updates to header: 0
+...Exam complete flag: 0
+...Last series number used: 3
+...Number of series archived: 0
+...Number of series existing: 3
+...Number of unstored series: 0
+...Number of unarchived series: 3
+...Number of prospective/scout series: 3
+...Last model number used: 0
+...Number of 3D models: 0
+...Number of cells in detector: 0
+...Magnet strength (in Gauss): 30000
+...Patient weight: 65770
+...Date/Time of last change: Thu Nov  1 08:07:00 2012
+...The make-unique flag: 0
+...Detector type: 0
+...Tube type: 0
+...DAS type: 0
+...Number of decon kernels: 0
+...Number of elements in a decon kernel: 0
+...Decon kernel density: 0
+...Decon kernel stepsize: 0
+...Decon kernel shift count: 0
+...Patient age (years, months or days): 0
+...Patient age notation: 0
+...Patient sex: 0
+...Exam format: 6
+...Trauma flag: 0
+...Non-zero indicates protocol exam: 1
+...Study has complete info (DICOM/genesis): 0
+...Patient History: 
+...Referring physician: 
+...Diagnostician/Radiologist: 
+...Operator: 
+...Exam type: MR
+...Creator suite and host: No2
+...Process that allocated this record: MRIFCCALLOC
+...Disk ID for this exam: 
+...Hospital name: Lucas Center
+...Suite ID for this exam: No
+...Genesis version - created: 23
+...Genesis version - now: 23
+...Unique system ID: 0000000000SHMR10
+...Unique service ID: 
+...Mobile location number: 9999
+...Study entity unique ID: 1.2.840.113619.6.283.4.1328857853.7098.1351807595.401 
+...Ref SOP class UID:  
+...Ref SOP instance UID:  
+...Patient name (FF): 
+...Patient ID (FF): 
+...Requisition number (FF): 
+...Date of birth: 19000101
+...Genesis exam UID: 1.2.840.113619.6.283.4.1328857853.7098.1351807595.401 
+...Genesis exam number: 
+
+...........SeriesData Type..................
+Offset to/size of SeriesData section: 144780, 2560
+...Exam number: 1
+...Series number: 3
+...Series description: SAG 3D CUBE PDwtd
+...Allocation series data/time stamp: Thu Nov  1 08:13:12 2012
+...Actual series data/time stamp: Thu Nov  1 08:13:12 2012
+...PixelData size - as stored: 0
+...PixelData size - compressed: 0
+...PixelData size - uncompressed: 0
+...Horizontal landmark: 522.9
+...First scan location (L/S): -93.5156
+...Last scan location (L/S): 57.0842
+...RAS letter for first scan location (L/S): L
+...RAS letter for last scan location (L/S): R
+...Series complete flag: 0
+...Number of images archived: 0
+...Last image number used: 252
+...Number of images existing: 252
+...Indicates number of updates to header: 0
+...Number of unstored images: 252
+...Number of unarchived images: 252
+...Patient position: 1
+...Patient entry: 2
+...Landmark counter: 0
+...Date/Time of last change: Thu Nov  1 08:13:12 2012
+...Echo 1 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 2 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 3 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 4 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 5 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 6 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 7 alpha, beta, window, level values: 0, 0, 0, 0
+...Echo 8 alpha, beta, window, level values: 0, 0, 0, 0
+...Series type: 1
+...Series from which prescribed: 0
+...Most-like plane (for L/S): 4
+...Scout or axial (for CT): 0
+...The make-unique flag: 0
+...Non-zero if > 0 image used contrast(L/S): 0
+...Last pulse sequence used (L/S): 86
+...Image sort order (L/S): 0
+...Number of acquisitions: 1
+...Starting number for baselines: 0
+...Ending number for baselines: 0
+...Starting number for enhanced scans: 0
+...Ending number for enhanced scans: 0
+...Table position for nMR and iMR: 0
+...nMR - swing angle: 0
+...nMR - lateral offset: 0
+...Gradient coil selection: 0
+...Genesis version - created: 23
+...Genesis version - now: 23
+...Suite ID for this series: No
+...Process that allocated this record: MRIFCCALLOC
+...Disk ID for this series: 
+...Primary receiver suite and host: No2
+...Archiver suite and host: 
+...Anatomical reference: 
+...Scan protocol name: Sawyer_Knee_CompSensing_1
+...Series entity unique ID: 1.2.840.113619.2.283.6945.2378876.1016.1351655081.717 
+...Landmark unique ID: 1.2.840.113619.2.283.6945.2378876.1016.1351655081.715 
+...Equipment unique ID: 1.2.840.113619.1.283.5.6945.2378876 
+...Ref SOP class UID:  
+...Ref SOP instance UID:  
+...Sched proc action item seq - value: 
+...Sched proc action item seq - description: 
+...Sched proc action item seq - meaning: 
+...Sched proc step desc: 
+...Sched proc step ID 1: 
+...Req proc step ID 1: 
+...PPS ID: 
+...PPS description: 
+...Req proc step ID 2: 
+...Req proc step ID 3: 
+...Sched proc step ID 2: 
+...Sched proc step ID 3: 
+...Dicom reference images (4 UIDS): 
+   (0):  
+   (1):  
+   (2):  
+   (3):  
+
+			11x fields
+...fMRI ExpType: 0
+...fMRI TrRest: 0
+...fMRI TrActive: 0
+...fMRI DumAcq: 0
+...fMRI ExptTimePts: 0
+...Supplement to se_typ, see DICOM (0008,0008): 0
+...fMRI BWRT: 0
+...fMRI PdgmStr:                                                                 
+...fMRI PdgmDesc:                                                                                                                                                                                                                                                                 
+...fMRI PdgmUID:  
+...fMRI ApplName:                 
+...fMRI ApplVer:                 
+
+			12x fields
+...Asset calibration series number: -1
+...Asset calibration scan number: 0
+...Product/Research/Service: 2
+...Pure calibration series number: 0
+...Pure calibration scan number: 0
+...Asset application name:             
+...Scic_a values from CoilConfig.cfg: 0                               
+...Scic_s values from CoilConfig.cfg: 0                               
+...Scic_c values from CoilConfig.cfg: 0                               
+...PURE config parameters from pure.cfg: rev=1;a=75;b=2;c=32;d=8;e=3;f=2;g=1;h=0                         
+
+			15x fields
+...(IDEAL) water, fat, in-phase, and out-phase: 0
+
+...........MRImgData Type..................
+Offset to/size of MRImgData section: 147340, 2448
+...Exam number for this image: 1
+...Series number for this image: 3
+...Image number: 1
+...Actual image date/time stamp: Thu Nov  1 08:13:12 2012
+...Allocation image date/time stamp: Thu Nov  1 08:13:12 2012
+...Raw data run number: 93186
+...Display field of view - x (mm): 160
+...Display field of view - y (if different): 160
+...Image matrix size - x: 512
+...Image matrix size - y: 512
+...Image dimension - x: 320
+...Image dimension - y: 320
+...Image pixel size - x: 0.3125
+...Image pixel size - y: 0.3125
+...Variable bandwidth (kHz): 50
+...Pulse repetition time (usec): 1550000
+...Pulse echo time (usec): 25661
+...Second echo time (usec): 50000
+...Echo train length for fast spin echo: 40
+...Fractional echo - effective TE flag: 2
+...Pulse inversion time (usec): 0
+...Flip angle for GRASS scans (deg): 90
+...Number of echoes: 1
+...Echo number: 1
+...Variable echo flag: 0
+...Number of slices in this scan group: 252
+...Slice thickness (mm): 0.6
+...Spacing between scans (mm): 0
+...Negative scan spacing for overlap slices: 0
+...Continuous slices flag: 0
+...Slice thickness (variable 'thk_disclmr'): 0
+...Number of 3D slabs: 1
+...Slice locations per 3D slab: 256
+...Number of slice locs on each slab which overlap neighbors: 0
+...Frequency direction: 2 (up/down)
+...Swap phase/frequency axis: 0
+...Slice offsets on frequency axis: 0
+...Number of excitations: 1
+...Duration of scan: 2.49478e+09
+...Magnitude, phase, imaginary, or real: 0
+...Plane type: 4
+...Oblique plane: 4
+...Scout type (A-P or lateral): 0
+...Graphically prescribed: 0
+...Series from which prescribed: 2
+...Image from which prescribed: 38
+...Image location: -93.5156
+...RAS letter of image location: L
+...(R,A,S) center coordinate of image: (-93.5156, 23.744, 6.7908)
+...(R,A,S) normal coordinate: (1, 0, 0)
+...(R,A,S) coordinate of top left hand corner: (-93.5156, 103.744, 86.7908)
+...(R,A,S) coordinate of top right hand corner: (-93.5156, -56.256, 86.7908)
+...(R,A,S) coordinate of bottom right hand corner: (-93.5156, -56.256, -73.2092)
+...Imaging mode: 9
+...Imaging options: ST ED (1073743904)
+...Imaging option 2: 1073741824
+...Imaging option 3: 64
+...Table delta: 0
+...Pulse sequence: 86
+...Pulse sequence mode: 1
+...Pulse sequence name: 3dfse
+...PSD creation date and time: Fri Jun  3 11:36:57 2011
+...PSD name from inside PSD: 3DFSE
+...Type of receiver used: 1
+...Coil type: 1
+...Coil name: HD TR Knee PA
+...Surface coil type: 0
+...Extremity coil flag: 0
+...Surface coil intensity correction flag: 0
+...IV contrast agent: 
+...Oral contrast agent: 
+...Image contrast mode: 0
+...Cardiac repetition time: 0
+...Cardiac heart rate (bpm): 382
+...Trigger window (% of RR interval): 0
+...Images per cardiac cycle: 0
+...Cardiac phase number: 0
+...Total number of cardiac phases prescribed: 0
+...Tagging flip angle: 0
+...Cardiac tagging orientation: 0
+...Tag type: 0
+...Tag space: 0
+...Blood suppression TI: 0
+...Delay time after trigger (msec): 0
+...Minimum delay after trigger (usec): 0
+...Fast CINE interpolation method: 0
+...Fast CINE normalization type: 0
+...Views per segment: 0
+...Respiratory rate (breaths per min): 0
+...Respiratory trigger point as percent of maximum: 0
+...Respiratory trigger window: 0
+...Number of fast phases: 0
+...Number of EPI shots: 1
+...Effective echo spacing for EPI: 0
+...Diffusion direction for DW-EPI: 0
+...B-value for DW-EPI: 1000
+...Average SAR: 0.0501979
+...Peak SAR: 2.66424
+...Average head SAR: 1.33212
+...Bitmap defining user CVs: 12587040
+...User usage tag ("defines how user CVs are filled in"): 0
+...What process fills in the user CVs, ifcc or TIR ('user_fill_mapMSW'): 0
+...What process fills in the user CVs, ifcc or TIR ('user_fill_mapLSW'): 0
+...User variable 0: 1
+...User variable 1: 0
+...User variable 2: 0
+...User variable 3: 0
+...User variable 4: 0
+...User variable 5: 0.8
+...User variable 6: 0
+...User variable 7: 2
+...User variable 8: 0
+...User variable 9: 0
+...User variable 10: 0
+...User variable 11: 0
+...User variable 12: 30
+...User variable 13: 0
+...User variable 14: 0
+...User variable 15: 0
+...User variable 16: 0
+...User variable 17: 0
+...User variable 18: 0
+...User variable 19: 0
+...User variable 20: 0
+...User variable 21: 0
+...User variable 22: 1
+...User variable 23: 1
+...User variable 24: 0
+...User variable 25: 0
+...User variable 26: 0
+...User variable 27: 0
+...User variable 28: 0
+...User variable 29: 0
+...User variable 30: 0
+...User variable 31: 0
+...User variable 32: 0
+...User variable 33: 0
+...User variable 34: 0
+...User variable 35: 0
+...User variable 36: 0
+...User variable 37: 0
+...User variable 38: 0
+...User variable 39: 0
+...User variable 40: 0
+...User variable 41: 0
+...User variable 42: 0
+...User variable 43: 0
+...User variable 44: 0
+...User variable 45: 0
+...User variable 46: 0
+...User variable 47: 0
+...User variable 48: 0
+...dBdt peak rate of gradient field change (T/s): 0
+...dBdt limit in units of percent of theoretical curve: 100
+...PSD estimated dBdt limit in Teslas/sec: 0
+...PSD estimated dBdt limit in units of percent: 97.9781
+...RTIA timer: 0
+...RTIA fps: 0
+...RTIA filter mode: 
+...Bitmap of SAT selections: 0
+...SAT fat/water/none: 5
+...Concat sat type flag: 0
+...R-side SAT pulse location relative to landmark: 9990
+...L-side SAT pulse location relative to landmark: 9990
+...A-side SAT pulse location relative to landmark: 9990
+...P-side SAT pulse location relative to landmark: 9990
+...S-side SAT pulse location relative to landmark: 9990
+...I-side SAT pulse location relative to landmark: 9990
+...Thickness of x axis SAT pulse: 0
+...Thickness of y axis SAT pulse: 0
+...Thickness of z axis SAT pulse: 0
+...Preparatory pulse option: 0
+...Magnitization Transfer offset frequency: 0
+...Vascular mode: 0
+...Phase contrast flow axis: 0
+...Phase contrast velocity encoding: 0
+...Scale weighted venc: 0
+...Magnitude weighting flag: 2
+...Collapse image: 0 (Unknown)
+...Projection algorithm: 0
+...Projection algorithm name: 
+...Projection angle: 0
+...X axis rotation: 0
+...Y axis rotation: 0
+...Z axis rotation: 0
+...Pause time: 0
+...Pause interval (slices): 0
+...Interimage/interloc delay (usec): 0
+...Image filtering 0.5/0.2 T: 0
+...MR-YMS num_seg: 0
+...Number of averages for spectro: 0
+...Station index: 0
+...Station total: 0
+...Calibrated field strength (x10 uGauss): 0
+...Scan acquisition number: 1
+...GE image integrity: 0
+...Identify image as original or unoriginal: 0
+...Image complete flag: 0
+...Reference image field: 
+...Summary image field: 
+...Window value: 0
+...Level value: 0
+...Lower range of pixels 1: 0
+...Upper range of pixels 1: 0
+...Lower range of pixels 2: 0
+...Upper range of pixels 2: 0
+...Screen format (8/16 bit): 16
+...Image archive flag: 0
+...Suite ID for this image: No
+...Image unique ID: 1.2.840.113619.2.283.6945.2378876.12989.1351655224.867 
+...Service obj class unique ID: 1.2.840.10008.5.1.4.1.1.4 
+...Make-unique flag: 0
+...Disk ID for this image: 
+...Image compression type for allocation: 3
+...Foreign image revision: 
+...Image allocation key: MRIFCCALLOC
+...Date/time of last change: Thu Nov  1 08:13:12 2012
+...Genesis version - created: 23
+...Genesis version - now: 23
+...Pixel data ID: 
+...Pixel data size - as stored: 0
+...Pixel data size - compressed: 0
+...Pixel data size - uncompressed: 0
+...String slop field 2: 
+...Bitmap of prescan options: 4
+
+			11x fields
+...Regressor value: 0
+...Delay after acquisition (MP/fMRI screen): 0
+
+			12x fields
+...Slice asset in ASSET screen: 1
+...Phase asset in ASSET screen: 1
+...Corresponding 4 SAR values for defined terms: [0.0501979, 2.66424, 1.33212, 1.33212]
+...SAR control mode (normal, 1st or 2nd): 1
+...Variable 'sarDefinition': defined terms available: 15
+...Shim FOV (2 terms): [0, 0]
+...Shim (R,A,S) center (2 terms): [0, 0, 0], [0, 0, 0]
+...dBdt control mode (normal, 1st or 2nd): 1
+...Governing body MHW/IEC/FDA: 1
+...Variable: 'no_shimvol': 0
+...Variable: 'shim_vol_type': 0
+...Variable: 'xml_psc_shm_vol':                                 
+...GE coil name: C-GE_HDx TR Knee PA     
+...Concatenated string of coilcode and chip serialID: 
+                                                                                                         
+...ASSET calibration series UID:  
+...PURE calibration series UID:  
+
+			14x fields
+...fMRI: RXM blob size: 0
+...fMRI: RXM blob size padding: 0
+...Current phase for this image (DP): 0
+...Acoustic reduction level: 0
+...Slice group number (0 = no groups, 1 = 1st group, etc.: 1
+...Number of slice groups (0 = no groups, 1 = 1st group, etc.: 1
+...Display image in auto view: 1
+...Variable: rxmpath: 
+...Pulse sequence name annotation: Cube
+
+			15x fields
+...Slice number in group: 0 = no image, 1 = 1st image, etc.: 3
+
+			16x/20x fields
+...AutoSubParam struct: [0, 0, 0, 0, 0, 0]
+...Imaged Nucleus 1H=>Hydrogen, 13C=>carbon, 23NA=>Sodium, etc: 1
+
+			22x fields
+...MRE temporal phases: 4
+...MEG frequency: 60
+...MRE driver amplitude: 30
+...MRE driver cycle per trigger: 3
+...MEG direction: 4
+...Duration of label or control pulse for 3D ASL...: 0
