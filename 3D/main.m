@@ -4,7 +4,7 @@ clc
 
 addpath('3D_Data')
 
-Kdata = single(readReconData('kspace'));
+Kdata = single(readReconData('kspace'));                                                        % The data is downloaded from mridata.org
 Option = 2;
 switch Option
     case 1
