@@ -23,6 +23,7 @@ HICU is a computational procedure for accelerated, calibrationless magnetic reso
 3. To implement the reconstruction for 3D, run file **3D/main.m**
 
 
+![image](https://user-images.githubusercontent.com/62859186/142609202-8c3be57c-02ef-44c3-8ceb-c37c9a5ebf1d.png)
 
 ## References
 1. https://arxiv.org/abs/2002.03225
