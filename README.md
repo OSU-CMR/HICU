@@ -30,5 +30,7 @@ HICU is a computational procedure for accelerated, calibrationless magnetic reso
 3. https://ieeexplore.ieee.org/document/9433815
 4. https://onlinelibrary.wiley.com/doi/10.1002/mrm.28721 (The Algorithm 1 is missing in this link but can be found in the arXiv version.)
 
+## Algorithm Pseudocode
+
 ![image](https://user-images.githubusercontent.com/62859186/142609279-680bc150-60af-4196-b61d-288058d16fe6.png)
 
