@@ -27,7 +27,7 @@ HICU is a computational procedure for accelerated, calibrationless magnetic reso
 ## References
 1. Zhao, Shen, Lee C. Potter, and Rizwan Ahmad. "High‐dimensional fast convolutional framework (HICU) for calibrationless MRI." Magnetic Resonance in Medicine 86.3 (2021): 1212-1225. https://onlinelibrary.wiley.com/doi/full/10.1002/mrm.28721?casa_token=9S2bjS4hh-gAAAAA%3AFwqvc1PrAQnBHDWNVAaZ75LCK317EzJkgPe1SUn4fgOtHfkA2wz8shxbp-zAZfK7ZhyMjcTyJwomVJbL 
 (The Algorithm 1 is missing in original version but can be found in the correction and arXiv version.)
-2. Zhao, Shen, Lee C. Potter, and Rizwan Ahmad. "Calibrationless MRI Reconstruction with a Plug-in Denoiser." 2021 IEEE 18th International Symposium on Biomedical Imaging (ISBI). IEEE, 2021.(https://ieeexplore.ieee.org/abstract/document/9433815?casa_token=MKEsGd6m7UwAAAAA:ZHFHDLDIaQCR_KE8aVYM3oDfW2FrnY5-wfjTnxcPOz8vmU46bX-NNrGR32qSHcROWTaW1-oxYw)
+2. Zhao, Shen, Lee C. Potter, and Rizwan Ahmad. "Calibrationless MRI Reconstruction with a Plug-in Denoiser." 2021 IEEE 18th International Symposium on Biomedical Imaging (ISBI). IEEE, 2021. https://ieeexplore.ieee.org/abstract/document/9433815?casa_token=MKEsGd6m7UwAAAAA:ZHFHDLDIaQCR_KE8aVYM3oDfW2FrnY5-wfjTnxcPOz8vmU46bX-NNrGR32qSHcROWTaW1-oxYw
 
 ## Algorithm
 
