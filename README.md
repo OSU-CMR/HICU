@@ -1,7 +1,7 @@
 # High-dimensional Fast Convolutional Framework (HICU) for Calibrationless MRI
 HICU is a computational procedure for accelerated, calibrationless magnetic resonance image reconstruction that is fast, memory efficient, and ready to scale to highdimensional imaging. For demonstration, HICU is applied to multi-coil 2D static imaging, multi-coil 2D dyanmic (2D+T) imaging, and 3D knee imaging. 
 
-* Shen Zhao, The Ohio State University (zhao.1758@osu.edu)
+* Shen Zhao, The Ohio State University (zhao.1758@osu.edu, shenzhao@stanford.edu)
 * Lee C. Potter, The Ohio State University (potter.36@osu.edu)
 * Rizwan Ahmad, The Ohio State University (ahmad.46@osu.edu)
 
