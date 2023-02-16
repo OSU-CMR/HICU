@@ -18,7 +18,7 @@ HICU is a computational procedure for accelerated, calibrationless magnetic reso
 
 
 ## 3D
-1. One 3D knee parallel MRI k-space and two sampling masks are in **3D/3D_Data**.
+1. 3D knee parallel MRI k-space needed to be downsampled from http://mridata.org/ and and two sampling masks are in **3D/3D_Data**.
 2. The HICU reconstruction subroutine for 3D is in **3D/HICUsubroutine_3D.m**.
 3. To implement the reconstruction for 3D, run file **3D/main.m**
 
