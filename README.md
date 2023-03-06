@@ -14,7 +14,7 @@ HICU is a computational procedure for accelerated, calibrationless magnetic reso
 ## 2D+T
 1. One 2D+T cardiac cine parallel MRI k-space and two sampling masks are in **2D_T/2D+T_Data**.
 2. The HICU reconstruction subroutine for 2D+T is in **2D+T/HICUsubroutine_2D_T.m**.
-3. The implementation assumes the circular periodicity along time dimension. If this model is not appropriate, then the **3D/HICUsubroutine_3D.m** could provide better result.
+3. The implementation assumes the circular periodicity along time dimension. If this model is not appropriate, then **3D/HICUsubroutine_3D.m** could be better.
 4. To implement the reconstruction for 2D+T, run file **2D+T/main.m**
 
 
